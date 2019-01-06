@@ -50,7 +50,7 @@ function getuserlogin($param){
 function islogin(){
 	$ci =& get_instance();
 	$ci->load->library('session');
-	if($ci->session->userdata(ISLOGIN) == true){
+	if($ci->session->userdata(COL_ISLOGIN) == true){
 		return true;
 	}else{
 		return false;

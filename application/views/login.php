@@ -8,7 +8,7 @@
                     <input type="hidden" name="ajax" id="" value="0">
                     <div class="form-group">
                         <?php if($error != ""){ ?>
-                            <span class="alert aler-danger"><?= $error ?></span>
+                            <div class="alert alert-danger"><?= $error ?></div>
                         <?php } ?>
                     </div>
                     <div class="form-group">

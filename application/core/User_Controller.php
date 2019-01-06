@@ -47,12 +47,20 @@ class User_Controller extends CI_Controller {
 
 				$cpass = $user->password;
 				if(md5($password) == $cpass){
+					// $session = array(
+					// 	COL_USERNAME =>$user->username,
+					// 	COL_EMAIL => $user->email,
+					// 	COL_ROLEID => $user->roleid,
+					// 	COL_FULLNAME => $user->fullname,
+					// 	COL_ISSUSPEND => $user->issuspend,
+					// 	ISLOGIN => true
+					// );
 					$this->session->set_userdata(COL_USERNAME, $user->username);
 					$this->session->set_userdata(COL_EMAIL, $user->email);
 					$this->session->set_userdata(COL_ROLEID, $user->roleid);
 					$this->session->set_userdata(COL_FULLNAME, $user->fullname);
 					$this->session->set_userdata(COL_ISSUSPEND, $user->issuspend);
-					$this->session->set_userdata(ISLOGIN, TRUE);
+					$this->session->set_userdata(COL_ISLOGIN, TRUE);
 					if(!$ajax){
 						redirect('', 'refresh');
 					}else{
@@ -72,7 +80,7 @@ class User_Controller extends CI_Controller {
 
 	}
 
-	function logout(){
+	public function logout(){
 		$this->session->sess_destroy();
 		redirect('user/viewlogin');
 	}

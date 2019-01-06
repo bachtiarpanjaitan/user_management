@@ -2,8 +2,9 @@
 <script src="<?= ASSETS ?>vendors/popper.js/dist/umd/popper.min.js"></script>
 <script src="<?= ASSETS ?>vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?= ASSETS ?>js/main.js"></script>
-<script src="<?= ASSETS ?>js/sweetalert.min.js"></script>
-<script src="<?= ASSETS ?>js/widgets.js"></script>
+<!-- <script src="<?= ASSETS ?>js/sweetalert.min.js"></script> -->
+<script src="<?= ASSETS ?>js/swal.js"></script>
+<!-- <script src="<?= ASSETS ?>js/widgets.js"></script> -->
 <script src="<?= ASSETS ?>vendors/jqvmap/dist/jquery.vmap.min.js"></script>
 <script src="<?= ASSETS ?>vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 <script src="<?= ASSETS ?>vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>

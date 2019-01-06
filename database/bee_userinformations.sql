@@ -16,32 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `userinformations`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `userinformations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE `userinformations` (
+  `userinformationid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `issuspend` varchar(1) DEFAULT NULL,
-  `token` varchar(45) DEFAULT NULL,
-  `roleid` varchar(45) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`username`)
+  `nipp` varchar(50) NOT NULL,
+  `branchid` int(11) NOT NULL,
+  `phonenumber` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`userinformationid`,`username`),
+  UNIQUE KEY `branchid_UNIQUE` (`branchid`),
+  KEY `fk_userinformations_1_idx` (`username`),
+  CONSTRAINT `fk_userinformations_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `userinformations`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('admin','admin super','admin@gmail.com','0192023a7bbd73250516f069df18b500','0','','0');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `userinformations` WRITE;
+/*!40000 ALTER TABLE `userinformations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `userinformations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-26  0:17:56
+-- Dump completed on 2019-01-06 23:28:00
