@@ -27,4 +27,8 @@ class Muser extends CI_Model{
 			
 		}
 	}
+
+	public function getroles(){
+		return $this->db->get(TBL_ROLES)->result_array();
+	}
 }

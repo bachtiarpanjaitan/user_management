@@ -4,6 +4,7 @@ defined('TBL_USERS') OR define('TBL_USERS', 'users');
 defined('TBL_BRANCHES') OR define('TBL_BRANCHES', 'branches');
 defined('TBL_TRAININGTYPES') OR define('TBL_TRAININGTYPES', 'trainingtypes');
 defined('TBL_EXPENSETYPES') OR define('TBL_EXPENSETYPES', 'expensetypes');
+defined('TBL_ROLES') OR define('TBL_ROLES', 'roles');
 
 
 
@@ -36,3 +37,5 @@ defined('COL_EXPENSETYPEID') OR define('COL_EXPENSETYPEID', 'expensetypeid');
 defined('COL_EXPENSETYPENAME') OR define('COL_EXPENSETYPENAME', 'expensetypename');
 defined('COL_BRANCHID') OR define('COL_BRANCHID', 'branchid');
 defined('COL_BRANCHNAME') OR define('COL_BRANCHNAME', 'branchname');
+defined('COL_ROLEID') OR define('COL_ROLEID', 'roleid');
+defined('COL_ROLENAME') OR define('COL_ROLENAME', 'rolename');

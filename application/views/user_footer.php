@@ -4,6 +4,7 @@
 <script src="<?= ASSETS ?>js/main.js"></script>
 <!-- <script src="<?= ASSETS ?>js/sweetalert.min.js"></script> -->
 <script src="<?= ASSETS ?>js/swal.js"></script>
+<script src="<?= ASSETS ?>js/main.js"></script>
 <!-- <script src="<?= ASSETS ?>js/widgets.js"></script> -->
 <script src="<?= ASSETS ?>vendors/jqvmap/dist/jquery.vmap.min.js"></script>
 <script src="<?= ASSETS ?>vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>

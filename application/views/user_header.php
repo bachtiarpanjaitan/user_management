@@ -84,7 +84,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-edit"></i><a href="font-fontawesome.html">New User</a></li>
+                            <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('user/adduser') ?>">New User</a></li>
                             <li><i class="menu-icon ti-list"></i><a href="font-themify.html">User List</a></li>
                         </ul>
                     </li>
