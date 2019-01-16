@@ -27,7 +27,7 @@ CREATE TABLE `branches` (
   `branchname` varchar(100) NOT NULL,
   `description` text,
   PRIMARY KEY (`branchid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,8 +36,39 @@ CREATE TABLE `branches` (
 
 LOCK TABLES `branches` WRITE;
 /*!40000 ALTER TABLE `branches` DISABLE KEYS */;
-INSERT INTO `branches` VALUES (8,'Medan aja','Medan aja'),(10,'Medan Kota','Testing Medan Kota');
+INSERT INTO `branches` VALUES (10,'Medan Kota','Testing Medan Kota'),(11,'Medan Baru','Medan Baru'),(12,'Medan Baru aja','Medan Baru');
 /*!40000 ALTER TABLE `branches` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `employeetrainings`
+--
+
+DROP TABLE IF EXISTS `employeetrainings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employeetrainings` (
+  `employeetrainingid` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` text,
+  `camefrom` text,
+  `entrydate` date NOT NULL,
+  `lengthofwork` int(11) NOT NULL DEFAULT '1',
+  `createdon` datetime NOT NULL,
+  `createdby` varchar(100) NOT NULL,
+  PRIMARY KEY (`employeetrainingid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employeetrainings`
+--
+
+LOCK TABLES `employeetrainings` WRITE;
+/*!40000 ALTER TABLE `employeetrainings` DISABLE KEYS */;
+INSERT INTO `employeetrainings` VALUES (1,'Jack Mandalu','jack@gmail.com','Medan','Politeknik LP3I Medan','2018-12-12',3,'2019-01-15 20:00:00','admin');
+/*!40000 ALTER TABLE `employeetrainings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -131,18 +162,19 @@ DROP TABLE IF EXISTS `trainings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `trainings` (
   `trainingid` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `cost` double NOT NULL,
+  `employeetrainingid` int(11) NOT NULL,
   `description` text,
   `createdby` varchar(255) NOT NULL,
   `createdon` datetime NOT NULL,
   `trainingdate` datetime NOT NULL,
   `trainingtypeid` int(11) NOT NULL,
+  `trainer` varchar(100) NOT NULL,
+  `trainingtitle` varchar(255) NOT NULL,
   PRIMARY KEY (`trainingid`),
   UNIQUE KEY `trainingid_UNIQUE` (`trainingid`),
-  KEY `fk_trainings_1_idx` (`username`),
+  KEY `fk_trainings_1_idx` (`employeetrainingid`),
   KEY `fk_trainings_2_idx` (`trainingtypeid`),
-  CONSTRAINT `fk_trainings_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_trainings_1` FOREIGN KEY (`employeetrainingid`) REFERENCES `employeetrainings` (`employeetrainingid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_trainings_2` FOREIGN KEY (`trainingtypeid`) REFERENCES `trainingtypes` (`trainingtypeid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -251,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-15 19:50:24
+-- Dump completed on 2019-01-16 22:53:29

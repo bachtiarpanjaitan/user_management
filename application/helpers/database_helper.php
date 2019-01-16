@@ -5,6 +5,7 @@ defined('TBL_BRANCHES') OR define('TBL_BRANCHES', 'branches');
 defined('TBL_TRAININGTYPES') OR define('TBL_TRAININGTYPES', 'trainingtypes');
 defined('TBL_EXPENSETYPES') OR define('TBL_EXPENSETYPES', 'expensetypes');
 defined('TBL_ROLES') OR define('TBL_ROLES', 'roles');
+defined('TBL_EMPLOYEETRAININGS') OR define('TBL_EMPLOYEETRAININGS', 'employeetrainings');
 
 
 
@@ -39,3 +40,8 @@ defined('COL_BRANCHID') OR define('COL_BRANCHID', 'branchid');
 defined('COL_BRANCHNAME') OR define('COL_BRANCHNAME', 'branchname');
 defined('COL_ROLEID') OR define('COL_ROLEID', 'roleid');
 defined('COL_ROLENAME') OR define('COL_ROLENAME', 'rolename');
+defined('COL_ADDRESS') OR define('COL_ADDRESS', 'address');
+defined('COL_EMPLOYEETRAININGID') OR define('COL_EMPLOYEETRAININGID', 'employeetrainingid');
+defined('COL_CAMEFROM') OR define('COL_CAMEFROM', 'camefrom');
+defined('COL_ENTRYDATE') OR define('COL_ENTRYDATE', 'entrydate');
+defined('COL_LENGTHOFWORK') OR define('COL_LENGTHOFWORK', 'lengthofwork');

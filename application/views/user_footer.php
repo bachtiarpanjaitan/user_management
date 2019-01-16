@@ -1,9 +1,11 @@
 <script src="<?= ASSETS ?>vendors/jquery/dist/jquery.min.js"></script>
 <script src="<?= ASSETS ?>vendors/popper.js/dist/umd/popper.min.js"></script>
 <script src="<?= ASSETS ?>vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?= ASSETS ?>vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?= ASSETS ?>js/main.js"></script>
 <!-- <script src="<?= ASSETS ?>js/sweetalert.min.js"></script> -->
 <script src="<?= ASSETS ?>js/swal.js"></script>
+<script src="<?= ASSETS ?>js/select2.min.js"></script>
 <script src="<?= ASSETS ?>js/main.js"></script>
 <!-- <script src="<?= ASSETS ?>js/widgets.js"></script> -->
 <script src="<?= ASSETS ?>vendors/jqvmap/dist/jquery.vmap.min.js"></script>

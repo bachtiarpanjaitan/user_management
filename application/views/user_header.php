@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" href="<?= ASSETS ?>css/style.css">
     <link rel="stylesheet" href="<?= ASSETS ?>css/sweetalert.css">
+    <link rel="stylesheet" href="<?= ASSETS ?>css/select2.min.css">
     <script src="<?= ASSETS ?>vendors/jquery/dist/jquery.min.js"></script>
     <script src="<?= ASSETS ?>vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= ASSETS ?>vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -57,11 +58,19 @@
                         <a href="<?= site_url() ?>"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">Data</h3><!-- /.menu-title -->
-                        <li>
-                            <a href="index.html"> <i class="menu-icon fa fa-star"></i>Training </a>
+                        <li class="menu-item-has-children dropdown">>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Training</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('training/addtraining') ?>">Add New Training</a></li>
+                                <li><i class="menu-icon ti-list"></i><a href="<?= site_url('training/traininglist') ?>">Training Data</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="index.html"> <i class="menu-icon fa fa-minus-circle"></i>Expense </a>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Expense</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="menu-icon fa fa-edit"></i><a href="">New Expense</a></li>
+                                <li><i class="menu-icon ti-list"></i><a href="">Expense Data</a></li>
+                            </ul>
                         </li>
 
 
@@ -85,7 +94,14 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('user/adduser') ?>">New User</a></li>
-                            <li><i class="menu-icon ti-list"></i><a href="font-themify.html">User List</a></li>
+                            <li><i class="menu-icon ti-list"></i><a href="">User List</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>User Training</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-edit"></i><a href="">New User Training</a></li>
+                            <li><i class="menu-icon ti-list"></i><a href="">User Training List</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

@@ -30,4 +30,12 @@ class Training_Controller extends CI_Controller {
 			$this->load->view('user/addtrainingtype', $data);
 		}
 	}
+
+	public function traininglist(){
+		$this->load->view('user/traininglist');
+	}
+
+	public function addtraining(){
+		$this->load->view('user/addtraining');
+	}
 }
