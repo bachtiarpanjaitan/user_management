@@ -1,0 +1,140 @@
+button
+{
+    border: 0;
+    background: none;
+    box-shadow:none;
+    border-radius: 0px;
+}
+.right { text-align: right; }
+.left { text-align: left; }
+.center { text-align: center; }
+.login-page {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 20px;
+    /* background-image: url("../Content/icon/erp-footer.png"); */
+    background-attachment: fixed;
+    background-size: 100% auto;
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+}
+.welcome-img {
+    padding-top: 70px;
+}
+.login-box {
+    height: 195px;
+    height: auto !important;
+    /* negative top offset to make the box overlap with the welcome image */
+    margin: -75px 15px 0 15px;
+    border: 3px solid red;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.login-fields-box {
+    height: 170px;
+    height: auto !important;
+    padding: 80px 30px 0 35px;
+}
+.login-button-box {
+    height: 25px;
+    padding: 15px 20px;
+    vertical-align: middle;
+    background-color: #e8e3e3;
+}
+.input-label {
+    font-size: 12px;
+}
+.input-field {
+    width: 250px;
+    width: 100%;
+    line-height: 24px;
+    border: 1px dotted #9e9e9e;
+    background-color: #e8e3e3;
+}
+.section-heading {
+    margin-bottom: 0px;
+    line-height: 12px;
+}
+.vision-mission-box {
+    min-height: 240px;
+    margin-top: 90px;
+    padding: 0 15px 0 40px;
+    padding: 10px 15px 0 40px;
+    font-family: Geneva, sans-serif;
+    /* partial box border */
+    background-image: url("../Content/icon/partial-box-left.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+}
+.cipta-values-box {
+    min-height: 240px;
+    margin-top: -19px;
+    padding: 8px 0 0 15px;
+    font-family: Geneva, sans-serif;
+    /* partial box border */
+    background-image: url("../Content/icon/partial-box-right.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.cipta-logo {
+    margin-left: 90px;
+    margin-top: 70px;
+}
+.cipta-value-title {
+    color: #f96400;
+    margin: 0px 0 0 0;
+}
+ul.cipta-value-items {
+    padding: 0;
+    margin: 0;
+}
+li.cipta-value-item {
+    list-style: none;
+    font-size: 10px;
+    margin: 0;
+}
+.cipta-value-icon {
+    float: left;
+    clear: both;
+    margin-right: 4px;
+    vertical-align: top;
+    min-height: 36px;
+}
+.btn{
+    text-decoration:none;
+    padding:0 25px;
+    line-height:28px;
+    font-size: 12px;
+    height: auto;
+    display:inline-block;
+    text-align:center;
+    cursor:pointer;
+}
+.btn.pill{
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+}
+.btn.red{
+    color: white;
+    background-color:#E53C38;
+}
+.btn.red:hover{
+    background-color:#ea6360;
+}
+.validation-summary-errors {
+    font-size: small;
+    color: #fff !important;
+    background-color: #dd4b39 !important;
+    border-color: #d73925;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid transparent;
+}
+.validation-summary-errors ul {
+    margin: 0 0 0 -28px;
+}
+.validation-summary-errors ul li {
+    list-style: none;
+}
