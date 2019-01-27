@@ -31,4 +31,41 @@ class Muser extends CI_Model{
 	public function getroles(){
 		return $this->db->get(TBL_ROLES)->result_array();
 	}
+
+	public function saveuser($data){
+		if(!empty($data)){
+			$this->db->insert(TBL_USERS, $data);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function saveuserinformation($data){
+		if(!empty($data)){
+			$this->db->insert('userinformations', $data);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function updateuser($data,$id){
+		if(!empty($data) && !empty($id)){
+			$this->db->where(COL_USERNAME, $id);
+			$this->db->update(TBL_USERS, $data);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function updateuserinformation($data,$id){
+		if(!empty($data) && !empty($id)){
+			$this->db->where(COL_USERNAME, $id);
+			$this->db->update('userinformations', $data);
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

@@ -14,7 +14,7 @@ class User extends User_Controller {
     function adduser(){
         $data['branch'] = $this->mbranch->getallbranch();
         $data['roles'] = $this->muser->getroles();
+        $data['edit'] = false;
         return $this->load->view('user/adduser',$data);
     }
-
 }

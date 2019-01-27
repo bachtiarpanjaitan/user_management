@@ -6,6 +6,7 @@ defined('TBL_TRAININGTYPES') OR define('TBL_TRAININGTYPES', 'trainingtypes');
 defined('TBL_EXPENSETYPES') OR define('TBL_EXPENSETYPES', 'expensetypes');
 defined('TBL_ROLES') OR define('TBL_ROLES', 'roles');
 defined('TBL_EMPLOYEETRAININGS') OR define('TBL_EMPLOYEETRAININGS', 'employeetrainings');
+defined('TBL_USERINFORMATIONS ') OR define('TBL_USERINFORMATIONS ', 'userinformations');
 
 
 

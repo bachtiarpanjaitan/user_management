@@ -13,6 +13,7 @@ class Api_Controller extends CI_Controller {
 			$this->load->model('mexpense');
 			$this->load->library('session');
 			$this->load->library('form_validation');
+			$this->load->helper(array('form', 'url'));
 		$resp = "";
     }
 
@@ -192,6 +193,108 @@ class Api_Controller extends CI_Controller {
 		}else{
 			$resp['success'] = false;
 			$resp['message'] = 'Data gagal dihapus';
+		}
+		echo json_encode($resp);
+	}
+
+	public function saveuser(){
+
+		$password = $username = $this->input->post("username");
+		$email = $this->input->post('email');
+		$fullname = $this->input->post('fullname');
+		$telepon = $this->input->post('telepon');
+		$nipp = $this->input->post("nipp");
+		$role = $this->input->post("roleid");
+		$branch = $this->input->post("branchid");
+		$edit = $this->input->post("edit");
+		$config = array(
+			array(
+					'field' => 'username',
+					'label' => 'Username',
+					'rules' => 'required'
+			),
+			array(
+					'field' => 'password',
+					'label' => 'Password',
+					'rules' => 'required'
+			),
+			array(
+					'field' => 'email',
+					'label' => 'Email',
+					'rules' => 'required|valid_email'
+			),
+			array(
+				'field' => 'fullname',
+				'label' => 'Fullname',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'telepon',
+				'label' => 'Telepon',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'nipp',
+				'label' => 'nipp',
+				'rules' => 'required'
+			),
+		);
+		$validate = $this->form_validation->set_rules($config);
+		if($validate == false){
+			$resp['success'] = false;
+			$resp['message'] = "Silahkan Isi data yang dibutuhkan";
+			echo json_encode($resp);
+			return;
+		}
+
+		if(!$edit){
+			$user = $this->muser->getuserdata($username);
+			if(count($user) > 0){
+				$resp['success'] = false;
+				$resp['message'] = "Username sudah pernah digunakan";
+				echo json_encode($resp);
+				return;
+			}
+		}
+
+		$data = array(
+			COL_USERNAME => $username,
+			COL_EMAIL => $email,
+			COL_FULLNAME => $fullname,
+			COL_PASSWORD => md5($password),
+			COL_ROLEID => ROLE_ADMIN,
+			COL_ISSUSPEND => 0,
+			COL_CREATEDBY => getuserlogin('username'),
+			COL_CREATEDON => date("Y-m-d H:i:s")
+		);
+		$data2 = array(
+			COL_NIPP => $nipp,
+			COL_USERNAME => $username,
+			COL_BRANCHID => $branch,
+			COL_PHONENUMBER => $telepon
+		);
+		if(!$edit){
+			$hassave = $this->muser->saveuser($data);
+		}else{
+			$hassave = $this->muser->updateuser($data, $username);
+		}
+		if($hassave){
+			if(!$edit){
+				$save = $this->muser->saveuserinformation($data2);
+			}else{
+				$save = $this->muser->updateuserinformation($data2, $username);
+			}
+			
+			if($save){
+				$resp['success'] = true;
+				$resp['message'] = "Data user sudah disimpan";
+			}else{
+				$resp['succes'] = false;
+				$resp['message'] = "Data Detail tidak dapat disimpan";
+			}	
+		}else{
+			$resp['succes'] = false;
+			$resp['message'] = "Data Pengguna tidak dapat disimpan";
 		}
 		echo json_encode($resp);
 	}
