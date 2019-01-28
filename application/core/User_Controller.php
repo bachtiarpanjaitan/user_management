@@ -46,7 +46,8 @@ class User_Controller extends CI_Controller {
 				}
 
 				$cpass = $user->password;
-				if(md5($password) == $cpass){
+				$md5pass = md5($password);
+				if($md5pass == $cpass){
 					// $session = array(
 					// 	COL_USERNAME =>$user->username,
 					// 	COL_EMAIL => $user->email,

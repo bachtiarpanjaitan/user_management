@@ -35,8 +35,12 @@
                 <select name="trainer" id="trainer" class="form-control"></select>
             </div>
             <div class="form-group">
+                <label for="divisi">Divisi</label>
+                <select name="divisi" id="divisi" class="form-control"></select>
+            </div>
+            <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" cols="30" rows="8" class="form-control"></textarea>
+                <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
             </div>
         </div>
     </form>

@@ -8,19 +8,19 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" required>
+                <input type="text" class="form-control" id="username" required <?= $edit?'disabled="disabled"':'' ?> value="<?= $edit?$user->username:'' ?>">
             </div>
             <div class="form-group">
                 <label for="fullname">Fullname</label>
-                <input type="text" class="form-control" id="fullname" required>
+                <input type="text" class="form-control" id="fullname" required value="<?= $edit?$user->fullname:'' ?>">
             </div>
             <div class="form-group">
                 <label for="nipp">NIPP</label>
-                <input type="text" class="form-control" id="nipp" required>
+                <input type="text" class="form-control" id="nipp" required value="<?= $edit?$user->nipp:'' ?>">
             </div>
             <div class="form-group">
                 <label for="branch">Cabang</label>
-                <select name="branch" id="branch" class="form-control">
+                <select name="branch" id="branch" class="form-control" value="<?= $edit?$user->branchid:'' ?>" >
                     <?php foreach($branch as $b){ ?>
                         <option value="<?= $b[COL_BRANCHID] ?>"><?= $b[COL_BRANCHNAME] ?></option>
                     <?php } ?>
@@ -33,15 +33,15 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" required>
+                <input type="text" class="form-control" id="email" required value="<?= $edit?$user->email:'' ?>" >
             </div>
             <div class="form-group">
                 <label for="phonenumber">Telepon</label>
-                <input type="text" onkeypress="return AllowOnlyNumbers(event)" maxlength="15" class="form-control" id="phonenumber" required>
+                <input type="text" onkeypress="return AllowOnlyNumbers(event)" maxlength="15" class="form-control" id="phonenumber" required value="<?= $edit?$user->phonenumber:'' ?>">
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
-                <select name="role" id="role" class="form-control">
+                <select name="role" id="role" class="form-control" value="<?= $edit?$user->roleid:'' ?>">
                 <?php foreach($roles as $r){ ?>
                     <option value="<?= $r[COL_ROLEID] ?>"><?= $r[COL_ROLENAME] ?></option>
                 <?php } ?>

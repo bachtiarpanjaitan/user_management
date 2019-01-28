@@ -94,14 +94,21 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('user/adduser') ?>">New User</a></li>
-                            <li><i class="menu-icon ti-list"></i><a href="">User List</a></li>
+                            <li><i class="menu-icon ti-list"></i><a href="<?= site_url('user/userlist') ?>">User List</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>User Training</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-edit"></i><a href="">New User Training</a></li>
-                            <li><i class="menu-icon ti-list"></i><a href="">User Training List</a></li>
+                            <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('user/addemployee') ?>">New User Training</a></li>
+                            <li><i class="menu-icon ti-list"></i><a href="<?= site_url('user/employeelist') ?>">User Training List</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-minus-circle"></i>Divisions</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('division/adddivision') ?>">New Division</a></li>
+                            <li><i class="menu-icon ti-list"></i><a href="<?= site_url('division/divisionlist') ?>">Division List</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

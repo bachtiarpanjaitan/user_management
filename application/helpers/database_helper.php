@@ -7,6 +7,7 @@ defined('TBL_EXPENSETYPES') OR define('TBL_EXPENSETYPES', 'expensetypes');
 defined('TBL_ROLES') OR define('TBL_ROLES', 'roles');
 defined('TBL_EMPLOYEETRAININGS') OR define('TBL_EMPLOYEETRAININGS', 'employeetrainings');
 defined('TBL_USERINFORMATIONS ') OR define('TBL_USERINFORMATIONS ', 'userinformations');
+defined('TBL_DIVISIONS') OR define('TBL_DIVISIONS','divisions');
 
 
 
@@ -45,4 +46,9 @@ defined('COL_ADDRESS') OR define('COL_ADDRESS', 'address');
 defined('COL_EMPLOYEETRAININGID') OR define('COL_EMPLOYEETRAININGID', 'employeetrainingid');
 defined('COL_CAMEFROM') OR define('COL_CAMEFROM', 'camefrom');
 defined('COL_ENTRYDATE') OR define('COL_ENTRYDATE', 'entrydate');
-defined('COL_LENGTHOFWORK') OR define('COL_LENGTHOFWORK', 'lengthofwork');
+defined('COL_LENGHTOFWORK') OR define('COL_LENGHTOFWORK', 'lenghtofwork');
+defined('COL_DIVISIONID') OR define('COL_DIVISIONID', 'divisionid');
+defined('COL_DIVISIONNAME') OR define('COL_DIVISIONNAME', 'divisionname');
+defined('COL_NAME') OR define('COL_NAME', 'name');
+defined('COL_UPDATEDBY') OR define('COL_UPDATEDBY', 'updatedby');
+defined('COL_UPDATEDON') OR define('COL_UPDATEDON', 'updatedon');
