@@ -59,4 +59,39 @@ class Mtraining extends CI_Model{
 		}
 	}
 
+	function saveemployeetraining($data){
+		if(!empty($data)){
+			$this->db->insert(TBL_TRAININGS, $data);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function updateemployeetraining($data){
+		if(!empty($data)){
+			$this->db->where(COL_TRAININGID, $id);
+			$this->db->update(TBL_TRAININGS, $data);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function gettraininginherit(){
+		$this->db->select(
+			'*',
+			TBL_EMPLOYEETRAININGS.'.*',
+			TBL_TRAININGTYPES.'.'.COL_TRAININGTYPENAME,
+			TBL_DIVISIONS.'.'.COL_DIVISIONNAME,
+			TBL_BRANCHES.'.'.COL_BRANCHNAME
+		);
+		$this->db->join(TBL_EMPLOYEETRAININGS.' et','et.'. COL_EMPLOYEETRAININGID.' = '. 't.'.COL_EMPLOYEETRAININGID, 'left');
+		$this->db->join(TBL_TRAININGTYPES.' tt','tt.'.COL_TRAININGTYPEID.' = '.'t.'.COL_TRAININGTYPEID,'left');
+		$this->db->join(TBL_DIVISIONS.' d','d.'.COL_DIVISIONID.' = '.'t.'.COL_DIVISIONID,'left');
+		$this->db->join(TBL_BRANCHES.' b','b.'.COL_BRANCHID.' = '.'t.'.COL_BRANCHID,'left');
+		$data = $this->db->get(TBL_TRAININGS.' t')->result_array();
+		return $data;
+	}
+
 }

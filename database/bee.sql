@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2019 at 03:11 PM
+-- Generation Time: Jan 29, 2019 at 03:32 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -88,7 +88,7 @@ CREATE TABLE `employeetrainings` (
 
 INSERT INTO `employeetrainings` (`employeetrainingid`, `name`, `email`, `address`, `camefrom`, `entrydate`, `lenghtofwork`, `createdon`, `createdby`, `updatedby`, `updatedon`) VALUES
 (2, 'jack', 'jack@gmail.com', 'Medan', 'LP3I', '2019-01-17', 2, '0000-00-00 00:00:00', '', 'admin', '2019-01-28 14:30:49'),
-(13, 'jack', 'jack@gmail.com', 'Medan', 'LP3I', '2019-01-17', 3, '2019-01-28 14:07:45', 'admin', NULL, NULL);
+(14, 'Fauzi', 'fauzi@gmail.com', 'Medan Belawan', 'LP3I Medan', '2018-12-01', 3, '2019-01-29 13:07:53', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -161,8 +161,18 @@ CREATE TABLE `trainings` (
   `trainingtypeid` int(11) NOT NULL,
   `trainer` varchar(100) NOT NULL,
   `trainingtitle` varchar(255) NOT NULL,
-  `divisionid` int(11) NOT NULL
+  `divisionid` int(11) NOT NULL,
+  `branchid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trainings`
+--
+
+INSERT INTO `trainings` (`trainingid`, `employeetrainingid`, `description`, `createdby`, `createdon`, `trainingdate`, `trainingtypeid`, `trainer`, `trainingtitle`, `divisionid`, `branchid`) VALUES
+(1, 2, 'this is description', 'admin', '2019-01-29 14:27:28', '2018-12-01 00:00:00', 4, 'jack', 'Test Save Training', 1, 13),
+(2, 14, 'ini Test Kedua', 'admin', '2019-01-29 14:28:33', '2018-11-02 00:00:00', 4, 'sdasd', 'Tes Training Kedua', 2, 13),
+(3, 14, 'TEst ketiga', 'admin', '2019-01-29 14:44:07', '2019-01-01 00:00:00', 4, 'sdasd', 'Tes Training Ketiga', 2, 13);
 
 -- --------------------------------------------------------
 
@@ -204,7 +214,7 @@ CREATE TABLE `userinformations` (
 INSERT INTO `userinformations` (`userinformationid`, `username`, `nipp`, `branchid`, `phonenumber`) VALUES
 (5, 'jack2', '0d0d0001em', 11, NULL),
 (6, 'sdasd', 'aSDASFfsdfsd', 12, '08123123'),
-(7, 'admin', 'dfsdf12e', 10, '08123123123');
+(8, 'admin', 'admin00000', 10, '08123123123');
 
 -- --------------------------------------------------------
 
@@ -229,8 +239,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `fullname`, `email`, `password`, `issuspend`, `token`, `roleid`, `createdby`, `createdon`) VALUES
-('jack2', 'jack mamba2', 'jackmamba2gmail.com', 'a870e8b855c8a64bc8c95ed388c7f6a1', '0', NULL, '1', 'admin', '2019-01-27 12:52:52'),
-('sdasd', 'asdas awdwd', 'asdadsa@gmail.com', '6c0cbf5029aed0af395ac4b864c6b095', '0', NULL, '1', 'admin', '2019-01-27 12:58:31');
+('admin', 'admin super', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, '1', 'admin', '2019-01-29 12:52:52'),
+('jack', 'jack mamba2', 'jackmamba2gmail.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, '2', 'admin', '2019-01-27 12:52:52'),
+('sdasd', 'asdas awdwd', 'asdadsa@gmail.com', '6c0cbf5029aed0af395ac4b864c6b095', '0', NULL, '2', 'admin', '2019-01-27 12:58:31');
 
 --
 -- Indexes for dumped tables
@@ -280,9 +291,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `trainings`
   ADD PRIMARY KEY (`trainingid`),
-  ADD UNIQUE KEY `trainingid_UNIQUE` (`trainingid`),
-  ADD KEY `fk_trainings_1_idx` (`employeetrainingid`),
-  ADD KEY `fk_trainings_2_idx` (`trainingtypeid`);
+  ADD UNIQUE KEY `trainingid_UNIQUE` (`trainingid`);
 
 --
 -- Indexes for table `trainingtypes`
@@ -316,12 +325,12 @@ ALTER TABLE `branches`
 -- AUTO_INCREMENT for table `divisions`
 --
 ALTER TABLE `divisions`
-  MODIFY `divisionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `divisionid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `employeetrainings`
 --
 ALTER TABLE `employeetrainings`
-  MODIFY `employeetrainingid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `employeetrainingid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `expenses`
 --
@@ -341,7 +350,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `trainingid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `trainingid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `trainingtypes`
 --
@@ -351,25 +360,7 @@ ALTER TABLE `trainingtypes`
 -- AUTO_INCREMENT for table `userinformations`
 --
 ALTER TABLE `userinformations`
-  MODIFY `userinformationid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `expenses`
---
-ALTER TABLE `expenses`
-  ADD CONSTRAINT `fk_expenses_1` FOREIGN KEY (`createdby`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_expenses_2` FOREIGN KEY (`expensetypeid`) REFERENCES `expenses` (`expenseid`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `trainings`
---
-ALTER TABLE `trainings`
-  ADD CONSTRAINT `fk_trainings_1` FOREIGN KEY (`employeetrainingid`) REFERENCES `employeetrainings` (`employeetrainingid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_trainings_2` FOREIGN KEY (`trainingtypeid`) REFERENCES `trainingtypes` (`trainingtypeid`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+  MODIFY `userinformationid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

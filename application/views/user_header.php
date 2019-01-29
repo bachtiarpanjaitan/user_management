@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="<?= ASSETS ?>css/style.css">
     <link rel="stylesheet" href="<?= ASSETS ?>css/sweetalert.css">
     <link rel="stylesheet" href="<?= ASSETS ?>css/select2.min.css">
+    <!-- <link rel="stylesheet" href="<?= ASSETS ?>css/select2-bootstrap.css"> -->
     <script src="<?= ASSETS ?>vendors/jquery/dist/jquery.min.js"></script>
     <script src="<?= ASSETS ?>vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= ASSETS ?>vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>

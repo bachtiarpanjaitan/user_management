@@ -8,6 +8,7 @@ defined('TBL_ROLES') OR define('TBL_ROLES', 'roles');
 defined('TBL_EMPLOYEETRAININGS') OR define('TBL_EMPLOYEETRAININGS', 'employeetrainings');
 defined('TBL_USERINFORMATIONS ') OR define('TBL_USERINFORMATIONS ', 'userinformations');
 defined('TBL_DIVISIONS') OR define('TBL_DIVISIONS','divisions');
+defined('TBL_TRAININGS') OR define('TBL_TRAININGS','trainings');
 
 
 
@@ -26,6 +27,7 @@ defined('COL_DESCRIPTION') OR define('COL_DESCRIPTION', 'description');
 defined('COL_CREATEDBY') OR define('COL_CREATEDBY', 'createdby');
 defined('COL_CREATEDON') OR define('COL_CREATEDON', 'createdon');
 defined('COL_TRAININGDATE') OR define('COL_TRAININGDATE', 'trainingdate');
+defined('COL_TRAININGTITLE') OR define('COL_TRAININGTITLE', 'trainingtitle');
 defined('COL_TRAININGTYPEID') OR define('COL_TRAININGTYPEID', 'trainingtypeid');
 defined('COL_TRAININGTYPENAME') OR define('COL_TRAININGTYPENAME', 'trainingtypename');
 defined('COL_USERINFORMATIONID') OR define('COL_USERINFORMATIONID', 'userinformationid');
@@ -52,3 +54,4 @@ defined('COL_DIVISIONNAME') OR define('COL_DIVISIONNAME', 'divisionname');
 defined('COL_NAME') OR define('COL_NAME', 'name');
 defined('COL_UPDATEDBY') OR define('COL_UPDATEDBY', 'updatedby');
 defined('COL_UPDATEDON') OR define('COL_UPDATEDON', 'updatedon');
+defined('COL_TRAINER') OR define('COL_TRAINER', 'trainer');

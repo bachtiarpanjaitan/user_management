@@ -3,7 +3,72 @@
 		redirect('user/viewlogin');
 	}
 ?>
+<div class="col col-md-12" style="padding-bottom: 20px">
+	<div class="col col-md-3">
+		<select name="cabang" id="cabang" class="form-control">
+			<?php foreach($branch as $data){ ?>
+				<option value="<?= $data[COL_BRANCHID] ?>"><?= $data[COL_BRANCHNAME] ?></option>
+			<?php } ?>
+		</select>
+	</div>
+	<div class="col col-md-3">
+		<select name="divisi" id="divisi" class="form-control">
+			<?php foreach($division as $data){ ?>
+				<option value="<?= $data[COL_DIVISIONID] ?>"><?= $data[COL_DIVISIONNAME] ?></option>
+			<?php } ?>
+		</select>
+	</div>
+	<div class="col col-md-3">
+		<select name="type" id="type" class="form-control">
+			<?php foreach($type as $data){ ?>
+				<option value="<?= $data[COL_TRAININGTYPEID] ?>"><?= $data[COL_TRAININGTYPENAME] ?></option>
+			<?php } ?>
+		</select>
+	</div>
+	<div class="col col-md-3">
+		<button class="btn btn-primary" id="btnsearch">SEARCH</button>
+	</div>
+</div>
 <div class="col col-md-12">
-    training list
+	<table class="table table-responsive table-hover" id="datatable">
+        <thead>
+            <th>No</th>
+            <th>Fullname</th>
+            <th>Mulai Training</th>
+            <th>Judul</th>
+            <th>Jenis Training</th>
+            <th>Instruktur</th>
+            <th>Cabang</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+        <?php 
+        $i = 1;
+        foreach($training as $data){ ?>
+            <tr>
+				<td><?= $i ?></td>
+				<td><?= $data[COL_NAME] ?></td>
+				<td><?= $data[COL_ENTRYDATE] ?></td>
+				<td><?= $data[COL_TRAININGTITLE] ?></td>
+				<td><?= $data[COL_TRAININGTYPENAME] ?></td>
+				<td><?= $data[COL_TRAINER] ?></td>
+				<td><?= $data[COL_BRANCHNAME] ?></td>
+				<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
+            </tr>
+        <?php $i++; } ?>
+        </tbody>
+    </table>
 </div>
 <?php $this->load->view('user_footer.php') ?>
+<script>
+	$(document).ready(function () {
+		$('#datatable').DataTable({
+            // lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+			"bLengthChange" : false,
+            columnDefs: [
+				{ "width": "50%", "targets": 1 },
+                { "width": "50%", "targets": 3 }
+            ]
+        });
+	});
+</script>

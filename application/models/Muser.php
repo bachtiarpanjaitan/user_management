@@ -8,12 +8,18 @@ class Muser extends CI_Model{
 		$this->load->database();
 	}
 
-	public function getuserdata($id = ''){
+	public function getuserdata($id = '',$array = false, $role = ""){
 		if(!empty($id)){
 			$this->db->where(COL_USERNAME, $id);
 		}
-
-		$data = $this->db->get(TBL_USERS)->result();
+		if(!empty($role)){
+			$this->db->where(COL_ROLEID, ROLE_USER);
+		}
+		if($array){
+			$data = $this->db->get(TBL_USERS)->result_array();
+		}else{
+			$data = $this->db->get(TBL_USERS)->result();
+		}
 		return $data;
 	}
 

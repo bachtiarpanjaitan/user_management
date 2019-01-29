@@ -9,6 +9,9 @@ class Training_Controller extends CI_Controller {
 			$this->load->helper('url');
 			$this->load->model('muser');
 			$this->load->model('mtraining');
+			$this->load->model('mbranch');
+			$this->load->model('mdivision');
+			$this->load->model('memployee');
 			$this->load->library('session');
 			$this->load->library('form_validation');
 	    }
@@ -32,10 +35,20 @@ class Training_Controller extends CI_Controller {
 	}
 
 	public function traininglist(){
-		$this->load->view('user/traininglist');
+		$data['type'] = $this->mtraining->getalltrainingtype();
+		$data['division'] = $this->mdivision->getalldivision();
+		$data['branch'] = $this->mbranch->getallbranch();
+		$data['training'] = $this->mtraining->gettraininginherit();
+		$this->load->view('user/traininglist',$data);
 	}
 
 	public function addtraining(){
-		$this->load->view('user/addtraining');
+		$data['user'] = $this->memployee->getemployee();
+		$data['trainer'] = $this->muser->getuserdata('',true, ROLE_USER);
+		$data['type'] = $this->mtraining->getalltrainingtype();
+		$data['division'] = $this->mdivision->getalldivision();
+		$data['branch'] = $this->mbranch->getallbranch();
+		$data['edit'] = false;
+		$this->load->view('user/addtraining',$data);
 	}
 }

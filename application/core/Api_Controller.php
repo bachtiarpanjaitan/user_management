@@ -391,10 +391,10 @@ class Api_Controller extends CI_Controller {
 
 		if($hassave){
 			$resp['success'] = true;
-			$resp['message'] = "Data training sudah disimpan";
+			$resp['message'] = "Data employee training sudah disimpan";
 		}else{
 			$resp['success'] = false;
-			$resp['message'] = "Data training tidak tersimpan";
+			$resp['message'] = "Data employee training tidak tersimpan";
 		}
 
 		echo json_encode($resp);
@@ -497,6 +497,105 @@ class Api_Controller extends CI_Controller {
 			$resp['success'] = false;
 			$resp['message'] = 'Data gagal dihapus';
 		}
+		echo json_encode($resp);
+	}
+
+	public function saveemployeetraining(){
+		$fullname = $this->input->post('fullname');
+		$title = $this->input->post('title');
+		$type = $this->input->post('type');
+		$date = $this->input->post('date');
+		$trainer = $this->input->post('trainer');
+		$division = $this->input->post('division');
+		$branch = $this->input->post('branch');
+		$description = $this->input->post('description');
+		$edit = $this->input->post('edit');
+		$id = $this->input->post('id');
+
+		$config = array(
+			array(
+				'field' => 'fullname',
+				'label' => 'Name',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'title',
+				'label' => 'trainingtitle',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'type',
+				'label' => 'TrainingType',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'date',
+				'label' => 'trainingdate',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'trainer',
+				'label' => 'trainer',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'division',
+				'label' => 'division',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'branch',
+				'label' => 'branch',
+				'rules' => 'required'
+			)
+		);
+
+		$validate = $this->form_validation->set_rules($config);
+		if($validate == false){
+			$resp['success'] = false;
+			$resp['message'] = "Silahkan Isi data yang dibutuhkan";
+			echo json_encode($resp);
+			return;
+		}
+
+		if(!$edit){
+			$data = array(
+				COL_EMPLOYEETRAININGID => $fullname,
+				COL_DESCRIPTION => $description,
+				COL_TRAININGDATE => $date,
+				COL_TRAININGTYPEID => $type,
+				COL_TRAINER => $trainer,
+				COL_TRAININGTITLE => $title,
+				COL_DIVISIONID => $division,
+				COL_BRANCHID => $branch,
+				COL_CREATEDBY => getuserlogin('username'),
+				COL_CREATEDON => date("Y-m-d H:i:s")
+			);
+			$hassave = $this->mtraining->saveemployeetraining($data);
+		}else{
+			$data = array(
+				COL_EMPLOYEETRAININGID => $fullname,
+				COL_DESCRIPTION => $description,
+				COL_TRAININGDATE => $date,
+				COL_TRAININGTYPEID => $type,
+				COL_TRAINER => $trainer,
+				COL_TRAININGTITLE => $title,
+				COL_DIVISIONID => $division,
+				COL_BRANCHID => $branch,
+				COL_UPDATEDBY => getuserlogin('username'),
+				COL_UPDATEDON => date("Y-m-d H:i:s")
+			);
+			$hassave = $this->mtraining->updateemployeetraining($data,$id);
+		}
+
+		if($hassave){
+			$resp['success'] = true;
+			$resp['message'] = "Data training sudah disimpan";
+		}else{
+			$resp['success'] = false;
+			$resp['message'] = "Data training tidak tersimpan";
+		}
+
 		echo json_encode($resp);
 	}
 
