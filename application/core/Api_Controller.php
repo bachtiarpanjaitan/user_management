@@ -599,4 +599,24 @@ class Api_Controller extends CI_Controller {
 		echo json_encode($resp);
 	}
 
+	public function deletetraining(){
+		$id = $this->input->post('trainingid');
+		if(empty($id)){
+			$resp['success'] = false;
+			$resp['message'] = 'training belum dipilih';
+			echo json_encode($resp);
+			return;
+		}
+
+		$result = $this->mtraining->deletetraining($id);
+		if($result){
+			$resp['success'] = true;
+			$resp['message'] = 'Data berhasil Dihapus';
+		}else{
+			$resp['success'] = false;
+			$resp['message'] = 'Data gagal dihapus';
+		}
+		echo json_encode($resp);
+	}
+
 }

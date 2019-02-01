@@ -68,17 +68,27 @@ class Mtraining extends CI_Model{
 		}
 	}
 
-	function updateemployeetraining($data){
+	function updateemployeetraining($data,$id){
 		if(!empty($data)){
 			$this->db->where(COL_TRAININGID, $id);
 			$this->db->update(TBL_TRAININGS, $data);
+			// var_dump($this->db->last_query());
 			return true;
 		}else{
 			return false;
 		}
 	}
 
-	function gettraininginherit(){
+	function gettraininginherit($br="", $di="", $ty=""){
+		if(!empty($br)){
+			$this->db->where(' t.'.COL_BRANCHID, $br);
+		}
+		if(!empty($di)){
+			$this->db->where(' t.'.COL_DIVISIONID, $di);
+		}
+		if(!empty($ty)){
+			$this->db->where(' t.'.COL_TRAININGTYPEID, $ty);
+		}
 		$this->db->select(
 			'*',
 			TBL_EMPLOYEETRAININGS.'.*',
@@ -92,6 +102,24 @@ class Mtraining extends CI_Model{
 		$this->db->join(TBL_BRANCHES.' b','b.'.COL_BRANCHID.' = '.'t.'.COL_BRANCHID,'left');
 		$data = $this->db->get(TBL_TRAININGS.' t')->result_array();
 		return $data;
+	}
+
+	function gettraining($id){
+		if(!empty($id)){
+			$this->db->where(COL_TRAININGID, $id);
+		}
+		return $this->db->get(TBL_TRAININGS)->result_array()[0];
+	}
+
+	public function deletetraining($id){
+		if($id){
+			$this->db->where(COL_TRAININGID, $id);
+			if($this->db->delete(TBL_TRAININGS)){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}
 
 }

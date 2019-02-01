@@ -9,7 +9,13 @@ class Home extends CI_Controller {
     }
 
   public function index(){
-  	$data['user'] = $this->muser->getuserdata();
+    $data['usercount'] = $this->muser->getusercount();
+    $data['trainingcount'] = $this->muser->gettrainingcount();
+    $data['employeecount'] = $this->muser->getemployeecount();
+    $data['recenttraining'] = $this->muser->getrecenttraining();
+    $data['recentuser'] = $this->muser->getrecentuser();
+    $data['user'] = $this->muser->getuserdata();
+    // var_dump($data['recentuser']);
 		$this->load->view('dashboard',$data);
 	}
 

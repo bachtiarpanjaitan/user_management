@@ -151,4 +151,42 @@ class Muser extends CI_Model{
 		}
 	}
 
+	public function getusercount(){
+		$data = count($this->db->get(TBL_USERS)->result_array());
+		return $data;
+	}
+	public function gettrainingcount(){
+		$data = count($this->db->get(TBL_TRAININGS)->result_array());
+		return $data;
+	}
+	public function getemployeecount(){
+		$data = count($this->db->get(TBL_EMPLOYEETRAININGS)->result_array());
+		return $data;
+	}
+
+	public function getrecenttraining(){
+		$this->db->order_by('t.createdon','desc');
+		$this->db->limit(5);
+		$this->db->join(TBL_EMPLOYEETRAININGS.' d','d.'.COL_EMPLOYEETRAININGID.' = '.'t.'.COL_EMPLOYEETRAININGID,'left');
+		$this->db->join(TBL_TRAININGTYPES.' e','e.'.COL_TRAININGTYPEID.' = '.'t.'.COL_TRAININGTYPEID,'left');
+		$this->db->join(TBL_BRANCHES.' b','b.'.COL_BRANCHID.' = '.'t.'.COL_BRANCHID,'left');
+		$this->db->where('YEAR(t.createdon)', date('Y'));
+		$this->db->where('MONTH(t.createdon)', date('m'));
+		$data = $this->db->get(TBL_TRAININGS.' t')->result_array();
+		// var_dump($this->db->last_query());
+		return $data;
+	}
+
+	public function getrecentuser(){
+		$this->db->order_by('t.createdon','desc');
+		$this->db->limit(5);
+		$this->db->join('userinformations d','d.'.COL_USERNAME.' = '.'t.'.COL_USERNAME,'left');
+		$this->db->join(TBL_BRANCHES.' e','e.'.COL_BRANCHID.' = '.'d.'.COL_BRANCHID,'left');
+		$this->db->where('YEAR(t.createdon)', date('Y'));
+		$this->db->where('MONTH(t.createdon)', date('m'));
+		$data = $this->db->get(TBL_USERS.' t')->result_array();
+		// var_dump($this->db->last_query());
+		return $data;
+	}
+
 }

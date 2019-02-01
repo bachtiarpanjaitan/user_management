@@ -3,32 +3,41 @@
 		redirect('user/viewlogin');
 	}
 ?>
-<div class="col col-md-12" style="padding-bottom: 20px">
-	<div class="col col-md-3">
-		<select name="cabang" id="cabang" class="form-control">
-			<?php foreach($branch as $data){ ?>
-				<option value="<?= $data[COL_BRANCHID] ?>"><?= $data[COL_BRANCHNAME] ?></option>
-			<?php } ?>
-		</select>
+<form action="<?= site_url('training/traininglist') ?>" method="POST">
+	<div class="col col-md-12" style="padding-bottom: 20px">
+		<div class="col col-md-3">
+			<label for="cabang">Cabang</label>
+			<select name="cabang" id="cabang" class="form-control">
+				<option value="">Semua</option>
+				<?php foreach($branch as $data){ ?>
+					<option value="<?= $data[COL_BRANCHID] ?>"><?= $data[COL_BRANCHNAME] ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<div class="col col-md-3">
+			<label for="divisi">Divisi</label>
+			<select name="divisi" id="divisi" class="form-control">
+				<option value="">Semua</option>
+				<?php foreach($division as $data){ ?>
+					<option value="<?= $data[COL_DIVISIONID] ?>"><?= $data[COL_DIVISIONNAME] ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<div class="col col-md-3">
+			<label for="type">Tipe Training</label>
+			<select name="type" id="type" class="form-control">
+				<option value="">Semua</option>
+				<?php foreach($type as $data){ ?>
+					<option value="<?= $data[COL_TRAININGTYPEID] ?>"><?= $data[COL_TRAININGTYPENAME] ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<div class="col col-md-3">
+			<label for="">...</label>
+			<button type="submit" class="btn btn-primary btn-block" id="btnsearch">SEARCH</button>
+		</div>
 	</div>
-	<div class="col col-md-3">
-		<select name="divisi" id="divisi" class="form-control">
-			<?php foreach($division as $data){ ?>
-				<option value="<?= $data[COL_DIVISIONID] ?>"><?= $data[COL_DIVISIONNAME] ?></option>
-			<?php } ?>
-		</select>
-	</div>
-	<div class="col col-md-3">
-		<select name="type" id="type" class="form-control">
-			<?php foreach($type as $data){ ?>
-				<option value="<?= $data[COL_TRAININGTYPEID] ?>"><?= $data[COL_TRAININGTYPENAME] ?></option>
-			<?php } ?>
-		</select>
-	</div>
-	<div class="col col-md-3">
-		<button class="btn btn-primary" id="btnsearch">SEARCH</button>
-	</div>
-</div>
+</form>
 <div class="col col-md-12">
 	<table class="table table-responsive table-hover" id="datatable">
         <thead>
@@ -39,6 +48,7 @@
             <th>Jenis Training</th>
             <th>Instruktur</th>
             <th>Cabang</th>
+			<th>Divisi</th>
             <th>Action</th>
         </thead>
         <tbody>
@@ -53,6 +63,7 @@
 				<td><?= $data[COL_TRAININGTYPENAME] ?></td>
 				<td><?= $data[COL_TRAINER] ?></td>
 				<td><?= $data[COL_BRANCHNAME] ?></td>
+				<td><?= $data[COL_DIVISIONNAME] ?></td>
 				<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
             </tr>
         <?php $i++; } ?>
@@ -70,5 +81,34 @@
                 { "width": "50%", "targets": 3 }
             ]
         });
+
+		$('.btndelete').click(function (e) { 
+			swal({
+				title: "Anda yakin ingin menghapusnya?",
+				text: "Tindakan ini tidak dapat dibatalkan.",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+				}).then((willDelete) => {
+				if (willDelete) {
+					$.ajax({
+						type: "POST",
+						url: "<?= site_url('api/deletetraining') ?>",
+						data: {
+							trainingid: $(this).data('id')
+						},
+						dataType: "JSON",
+						success: function (response) {
+							if(response.success == true){
+								swal('success', response.message, 'success')
+								.then((val) => {
+									location.reload();
+								});
+							}
+						}
+					});
+				}
+			});   
+    	});
 	});
 </script>

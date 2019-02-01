@@ -9,21 +9,21 @@
             <input type="hidden" id="id" value="<?= $edit? $training[COL_TRAININGID]:'' ?>">
             <div class="form-group">
                 <label for="fullname">Full Name</label>
-                <select name="fullname" id="fullname" class="form-control select2 " value="<?= $edit? $training[COL_NAME]:'' ?>">
+                <select name="fullname" id="fullname" class="form-control select2 ">
                     <?php foreach($user as $u){ ?>
-                        <option value="<?= $u[COL_EMPLOYEETRAININGID] ?>"><?= $u[COL_NAME] ?></option>
+                        <option <?= $edit && $training[COL_EMPLOYEETRAININGID] == $u[COL_EMPLOYEETRAININGID]? 'selected':'' ?> value="<?= $u[COL_EMPLOYEETRAININGID] ?>"><?= $u[COL_NAME] ?></option>
                     <?php } ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="trainingtitle">Training Title</label>
-                <input type="text" class="form-control" id="trainingtitle" required value="<?= $edit? $training[COL_TRAININGTITILE]:'' ?>">
+                <input type="text" class="form-control" id="trainingtitle" required value="<?= $edit? $training[COL_TRAININGTITLE]:'' ?>">
             </div>
             <div class="form-group">
                 <label for="trainingtype">Training Type</label>
                 <select name="trainingtype" id="trainingtype" class="form-control" value="<?= $edit? $training[COL_TRAININGTYPEID]:'' ?>">
                     <?php foreach($type as $u){ ?>
-                        <option value="<?= $u[COL_TRAININGTYPEID] ?>"><?= $u[COL_TRAININGTYPENAME] ?></option>
+                        <option <?= $edit && $training[COL_TRAININGTYPEID] == $u[COL_TRAININGTYPEID]? 'selected':'' ?> value="<?= $u[COL_TRAININGTYPEID] ?>"><?= $u[COL_TRAININGTYPENAME] ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -37,7 +37,7 @@
                 <label for="trainer">Trainer</label>
                 <select name="trainer" id="trainer" class="form-control select2" value="<?= $edit? $training[COL_USERNAME]:'' ?>">
                     <?php foreach($trainer as $u){ ?>
-                        <option value="<?= $u[COL_USERNAME] ?>"><?= $u[COL_FULLNAME] ?></option>
+                        <option <?= $edit && $training[COL_TRAINER] == $u[COL_USERNAME]? 'selected':'' ?> value="<?= $u[COL_USERNAME] ?>"><?= $u[COL_FULLNAME] ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -45,7 +45,7 @@
                 <label for="division">Divisi</label>
                 <select name="division" id="division" class="form-control" value="<?= $edit? $training[COL_DIVISIONID]:'' ?>">
                     <?php foreach($division as $u){ ?>
-                        <option value="<?= $u[COL_DIVISIONID] ?>"><?= $u[COL_DIVISIONNAME] ?></option>
+                        <option <?= $edit && $training[COL_DIVISIONID] == $u[COL_DIVISIONID]? 'selected':'' ?> value="<?= $u[COL_DIVISIONID] ?>"><?= $u[COL_DIVISIONNAME] ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -53,7 +53,7 @@
                 <label for="branch">Cabang</label>
                 <select name="branch" id="branch" class="form-control" value="<?= $edit? $training[COL_BRANCHID]:'' ?>">
                     <?php foreach($branch as $u){ ?>
-                        <option value="<?= $u[COL_BRANCHID] ?>"><?= $u[COL_BRANCHNAME] ?></option>
+                        <option <?= $edit && $training[COL_BRANCHID] == $u[COL_BRANCHID]? 'selected':'' ?> value="<?= $u[COL_BRANCHID] ?>"><?= $u[COL_BRANCHNAME] ?></option>
                     <?php } ?>
                 </select>
             </div>

@@ -35,10 +35,13 @@ class Training_Controller extends CI_Controller {
 	}
 
 	public function traininglist(){
+		$branch = $this->input->post('cabang');
+		$division = $this->input->post('divisi');
+		$type = $this->input->post('type');
 		$data['type'] = $this->mtraining->getalltrainingtype();
 		$data['division'] = $this->mdivision->getalldivision();
 		$data['branch'] = $this->mbranch->getallbranch();
-		$data['training'] = $this->mtraining->gettraininginherit();
+		$data['training'] = $this->mtraining->gettraininginherit($branch,$division, $type);
 		$this->load->view('user/traininglist',$data);
 	}
 
@@ -50,5 +53,21 @@ class Training_Controller extends CI_Controller {
 		$data['branch'] = $this->mbranch->getallbranch();
 		$data['edit'] = false;
 		$this->load->view('user/addtraining',$data);
+	}
+
+	public function trainingedit($id){
+		if(!empty($id)){
+			$this->db->where(COL_TRAININGID, $id);
+		}
+		$data['training'] = $this->mtraining->gettraining($id);
+		$data['user'] = $this->memployee->getemployee();
+		$data['trainer'] = $this->muser->getuserdata('',true, ROLE_USER);
+		$data['type'] = $this->mtraining->getalltrainingtype();
+		$data['division'] = $this->mdivision->getalldivision();
+		$data['branch'] = $this->mbranch->getallbranch();
+		$data['edit'] = true;
+		// var_dump($data['training']);
+
+		$this->load->view('user/addtraining', $data);
 	}
 }
