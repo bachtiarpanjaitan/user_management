@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2019 at 03:32 PM
+-- Generation Time: Feb 01, 2019 at 04:53 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -157,7 +157,9 @@ CREATE TABLE `trainings` (
   `description` text,
   `createdby` varchar(255) NOT NULL,
   `createdon` datetime NOT NULL,
-  `trainingdate` datetime NOT NULL,
+  `updatedby` varchar(255) DEFAULT NULL,
+  `updatedon` datetime DEFAULT NULL,
+  `trainingdate` date NOT NULL,
   `trainingtypeid` int(11) NOT NULL,
   `trainer` varchar(100) NOT NULL,
   `trainingtitle` varchar(255) NOT NULL,
@@ -169,10 +171,9 @@ CREATE TABLE `trainings` (
 -- Dumping data for table `trainings`
 --
 
-INSERT INTO `trainings` (`trainingid`, `employeetrainingid`, `description`, `createdby`, `createdon`, `trainingdate`, `trainingtypeid`, `trainer`, `trainingtitle`, `divisionid`, `branchid`) VALUES
-(1, 2, 'this is description', 'admin', '2019-01-29 14:27:28', '2018-12-01 00:00:00', 4, 'jack', 'Test Save Training', 1, 13),
-(2, 14, 'ini Test Kedua', 'admin', '2019-01-29 14:28:33', '2018-11-02 00:00:00', 4, 'sdasd', 'Tes Training Kedua', 2, 13),
-(3, 14, 'TEst ketiga', 'admin', '2019-01-29 14:44:07', '2019-01-01 00:00:00', 4, 'sdasd', 'Tes Training Ketiga', 2, 13);
+INSERT INTO `trainings` (`trainingid`, `employeetrainingid`, `description`, `createdby`, `createdon`, `updatedby`, `updatedon`, `trainingdate`, `trainingtypeid`, `trainer`, `trainingtitle`, `divisionid`, `branchid`) VALUES
+(1, 2, 'this is description', 'admin', '2019-02-02 14:27:28', NULL, NULL, '2018-12-01', 4, 'jack', 'Test Save Training', 1, 13),
+(3, 14, 'TEst ketiga', 'admin', '2019-02-06 14:44:07', 'admin', '2019-02-01 15:40:50', '2019-01-01', 4, 'sdasd', 'Tes Training Ketiga', 2, 11);
 
 -- --------------------------------------------------------
 
@@ -212,7 +213,7 @@ CREATE TABLE `userinformations` (
 --
 
 INSERT INTO `userinformations` (`userinformationid`, `username`, `nipp`, `branchid`, `phonenumber`) VALUES
-(5, 'jack2', '0d0d0001em', 11, NULL),
+(5, 'jack', '0d0d0001em', 11, NULL),
 (6, 'sdasd', 'aSDASFfsdfsd', 12, '08123123'),
 (8, 'admin', 'admin00000', 10, '08123123123');
 
@@ -240,7 +241,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `fullname`, `email`, `password`, `issuspend`, `token`, `roleid`, `createdby`, `createdon`) VALUES
 ('admin', 'admin super', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, '1', 'admin', '2019-01-29 12:52:52'),
-('jack', 'jack mamba2', 'jackmamba2gmail.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, '2', 'admin', '2019-01-27 12:52:52'),
+('jack', 'jack mamba2', 'jackmamba2gmail.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, '2', 'admin', '2019-02-07 12:52:52'),
 ('sdasd', 'asdas awdwd', 'asdadsa@gmail.com', '6c0cbf5029aed0af395ac4b864c6b095', '0', NULL, '2', 'admin', '2019-01-27 12:58:31');
 
 --
