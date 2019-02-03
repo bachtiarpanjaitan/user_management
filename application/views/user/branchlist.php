@@ -30,7 +30,8 @@
         $('#datatable').DataTable({
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
             columnDefs: [
-                { "width": "70%", "targets": 2 }
+                { "width": "50%", "targets": 1 },
+                { "width": "50%", "targets": 2 }
             ]
         });
 

@@ -107,6 +107,13 @@ class Muser extends CI_Model{
 			return $data;
 		}
 	}
+	public function getemployeewithname($name){
+		if(!empty($name)){
+			$this->db->where(COL_NAME, $name);
+			$data = $this->db->get(TBL_EMPLOYEETRAININGS)->result_array();
+			return $data;
+		}
+	}
 	public function getemployeebyname($name){
 		if(!empty($name)){
 			$this->db->where(COL_NAME, $name);

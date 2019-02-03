@@ -47,6 +47,11 @@ class Mtraining extends CI_Model{
 		$data = $this->db->get(TBL_TRAININGTYPES)->row();
 		return $data;
 	}
+	function gettrainingtypewithname($name){
+		$this->db->where(COL_TRAININGTYPENAME, $name);
+		$data = $this->db->get(TBL_TRAININGTYPES)->result_array();
+		return $data;
+	}
 
 	function deletetrainingtype($id){
 		if($id){
@@ -110,7 +115,6 @@ class Mtraining extends CI_Model{
 		}
 		return $this->db->get(TBL_TRAININGS)->result_array()[0];
 	}
-
 	public function deletetraining($id){
 		if($id){
 			$this->db->where(COL_TRAININGID, $id);

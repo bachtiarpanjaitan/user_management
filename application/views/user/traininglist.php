@@ -38,48 +38,65 @@
 		</div>
 	</div>
 </form>
-<div class="col col-md-12">
-	<table class="table table-responsive table-hover" id="datatable">
-        <thead>
-            <th>No</th>
-            <th>Fullname</th>
-            <th>Mulai Training</th>
-            <th>Judul</th>
-            <th>Jenis Training</th>
-            <th>Instruktur</th>
-            <th>Cabang</th>
-			<th>Divisi</th>
-            <th>Action</th>
-        </thead>
-        <tbody>
-        <?php 
-        $i = 1;
-        foreach($training as $data){ ?>
-            <tr>
-				<td><?= $i ?></td>
-				<td><?= $data[COL_NAME] ?></td>
-				<td><?= $data[COL_ENTRYDATE] ?></td>
-				<td><?= $data[COL_TRAININGTITLE] ?></td>
-				<td><?= $data[COL_TRAININGTYPENAME] ?></td>
-				<td><?= $data[COL_TRAINER] ?></td>
-				<td><?= $data[COL_BRANCHNAME] ?></td>
-				<td><?= $data[COL_DIVISIONNAME] ?></td>
-				<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
-            </tr>
-        <?php $i++; } ?>
-        </tbody>
-    </table>
+<div class="container-fluid">
+	<div class="col col-md-12" style="display:inline-block;">
+		<table class="table table-hover" id="datatable">
+			<thead>
+				<th>No</th>
+				<th>Nama Lengkap</th>
+				<th>Mulai Training</th>
+				<th>Judul</th>
+				<!-- <th>Asal</th> -->
+				<th>Jenis Training</th>
+				<th>Instruktur</th>
+				<th>Cabang</th>
+				<!-- <th>Divisi</th> -->
+				<th>Action</th>
+			</thead>
+			<tbody>
+			<?php 
+			$i = 1;
+			foreach($training as $data){ ?>
+				<tr>
+					<td><?= $i ?></td>
+					<td><?= $data[COL_NAME] ?></td>
+					<td><?= $data[COL_ENTRYDATE] ?></td>
+					<td><?= $data[COL_TRAININGTITLE] ?></td>
+					<!-- <td><?= $data[COL_CAMEFROM] ?></td> -->
+					<td><?= $data[COL_TRAININGTYPENAME] ?></td>
+					<td><?= $data[COL_TRAINER] ?></td>
+					<td><?= $data[COL_BRANCHNAME] ?></td>
+					<!-- <td><?= $data[COL_DIVISIONNAME] ?></td> -->
+					<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
+				</tr>
+			<?php $i++; } ?>
+			</tbody>
+		</table>
+	</div>
 </div>
 <?php $this->load->view('user_footer.php') ?>
+<script src="<?= ASSETS ?>js/7zip.js"></script>
+<script src="<?= ASSETS ?>js/datatable-button.js"></script>
+<script src="<?= ASSETS ?>js/html5-button.js"></script>
+<script src="<?= ASSETS ?>js/pdfmake.js"></script>
+<script src="<?= ASSETS ?>js/print.js"></script>
+<script src="<?= ASSETS ?>js/vfs-fonts.js"></script>
 <script>
 	$(document).ready(function () {
 		$('#datatable').DataTable({
-            // lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
-			"bLengthChange" : false,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+			"bLengthChange" : true,
             columnDefs: [
 				{ "width": "50%", "targets": 1 },
                 { "width": "50%", "targets": 3 }
-            ]
+			],
+			dom: 'Bfrtip',
+			scrollX:        true,
+			deferRender:    true,
+			scroller:       true,
+			buttons: [
+				'copy', 'csv', 'excel', 'pdf', 'print'
+			]
         });
 
 		$('.btndelete').click(function (e) { 

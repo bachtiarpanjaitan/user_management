@@ -48,6 +48,12 @@ class Mbranch extends CI_Model{
 		return $data;
 	}
 
+	function getbranchwithname($name){
+		$this->db->where(COL_BRANCHNAME, $name);
+		$data = $this->db->get(TBL_BRANCHES)->result_array();
+		return $data;
+	}
+
 	function deletebranch($id){
 		if($id){
 			$this->db->where(COL_BRANCHID, $id);

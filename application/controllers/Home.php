@@ -17,7 +17,11 @@ class Home extends CI_Controller {
     $data['user'] = $this->muser->getuserdata();
     // var_dump($data['recentuser']);
 		$this->load->view('dashboard',$data);
-	}
+  }
+  
+  public function setting(){
+    $this->load->view('user/setting');
+  }
 
 
 }
