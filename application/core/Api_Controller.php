@@ -19,6 +19,13 @@ class Api_Controller extends CI_Controller {
     }
 
 	public function savebranch(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$branchname = $this->input->post('branchname');
 		$description = $this->input->post('description');
 		$edit = $this->input->post('edit');
@@ -99,6 +106,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function deletetrainingtype(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$id = $this->input->post('id');
 		if(empty($id)){
 			$resp['success'] = false;
@@ -119,6 +133,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function saveexpensetype(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$etypename = $this->input->post('etypename');
 		$description = $this->input->post('description');
 		$edit = $this->input->post('edit');
@@ -159,6 +180,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function deleteexpensetype(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$id = $this->input->post('id');
 		if(empty($id)){
 			$resp['success'] = false;
@@ -179,6 +207,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function deletebranch(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$id = $this->input->post('id');
 		if(empty($id)){
 			$resp['success'] = false;
@@ -199,7 +234,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function saveuser(){
-
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$password = $username = $this->input->post("username");
 		$email = $this->input->post('email');
 		$fullname = $this->input->post('fullname');
@@ -301,6 +342,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function saveemployee(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$name = $this->input->post('name');
 		$email = $this->input->post('email');
 		$address = $this->input->post('address');
@@ -401,6 +449,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function deleteuser(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$id = $this->input->post('username');
 		if(empty($id)){
 			$resp['success'] = false;
@@ -421,6 +476,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function deleteemployee(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$id = $this->input->post('id');
 		if(empty($id)){
 			$resp['success'] = false;
@@ -441,6 +503,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function savedivision(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$divisionname = $this->input->post('divisionname');
 		$description = $this->input->post('description');
 		$edit = $this->input->post('edit');
@@ -481,6 +550,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function deletedivision(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$id = $this->input->post('id');
 		if(empty($id)){
 			$resp['success'] = false;
@@ -501,6 +577,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function saveemployeetraining(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$fullname = $this->input->post('fullname');
 		$title = $this->input->post('title');
 		$type = $this->input->post('type');
@@ -600,6 +683,13 @@ class Api_Controller extends CI_Controller {
 	}
 
 	public function deletetraining(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
 		$id = $this->input->post('trainingid');
 		if(empty($id)){
 			$resp['success'] = false;

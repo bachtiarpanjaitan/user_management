@@ -128,6 +128,10 @@
                             <li><i class="menu-icon ti-list"></i><a href="<?= site_url('expense/expensetypelist') ?>">Expense Type List</a></li>
                         </ul>
                     </li> -->
+                    <h3 class="menu-title">Data</h3>
+                    <li class="active">
+                        <a href="<?= site_url('guide') ?>"> <i class="menu-icon fa fa-dashboard"></i>Guide </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -139,13 +143,7 @@
                 <div class="col-sm-7">
                     <!-- <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a> -->
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
+                      
                     </div>
                 </div>
 
@@ -173,5 +171,5 @@
 
         </header><!-- /header -->
         <!-- Header-->
-
+        <br><br>
     <?php  } ?>
