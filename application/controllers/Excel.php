@@ -48,31 +48,37 @@ class Excel extends CI_Controller {
                 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
                 $objPHPExcel = $objReader->load($inputFileName);
                 $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+                // var_dump($allDataInSheet);
                 $flag = true;
                 $i=3;
                 $this->db->query('delete from trainings');
                 $this->db->query('ALTER TABLE trainings AUTO_INCREMENT = 1');
                 for ($i;$i < count($allDataInSheet) - 3; $i++) {
+                    
                     if($flag){
                         $flag =false;
                         continue;
                     }
                     $name = $allDataInSheet[$i]['B'];
-                    $rowuser = $this->muser->getemployeewithname($name);
+                    $rowuser = $this->muser->getemployeewithname(trim($name));
                     if(!$rowuser){
+                        print_r("Nama tidak ditemukan didaftar user training dengan nama: <b>". $name ."</b> <br>");
                         continue;
                     }
-                    $training = $allDataInSheet[$i]['F'];
-                    $rowtraining = $this->mtraining->gettrainingtypewithname($training);
+                    $training = $allDataInSheet[$i]['E'];
+                    $rowtraining = $this->mtraining->gettrainingtypewithname(trim($training));
                     if(!$rowtraining){
+                        echo "Jenis training tidak ditemukan dengan nama <b>". $training."</b> . <br>";
                         continue;
                     }
 
                     $branch = $allDataInSheet[$i]['D'];
                     $rowbranch = $this->mbranch->getbranchwithname($branch);
                     if(!$rowbranch){
+                        echo "Cabang tidak ditemukan di daftar dengan nama: <b>". $branch ." </b> <br>";
                         continue;
                     }
+                   
                     // $data = array(
                     //     $rowuser,
                     //     $rowtraining,
@@ -86,14 +92,22 @@ class Excel extends CI_Controller {
                     $inserdata[COL_CREATEDON] = date('Y-m-d');
                     $inserdata[COL_CREATEDBY] = 'System';
                     $inserdata[COL_CREATEDON] = date('Y-m-d');
+                    $inserdata[COL_TRAININGDATE] = $allDataInSheet[$i]['F'];
                     $inserdata[COL_TRAININGDATE] = date('Y-m-d');
                     $inserdata[COL_TRAININGTYPEID] = $rowtraining[0][COL_TRAININGTYPEID];
                     $inserdata[COL_TRAINER] = 'Default';
-                    $inserdata[COL_TRAININGTITLE] = $allDataInSheet[$i]['E'];
+                    $inserdata[COL_TRAININGTITLE] = $allDataInSheet[$i]['D'];
                     $inserdata[COL_DIVISIONID] = 3;
+                    $insertdata[COL_NIPP] = $allDataInSheet[$i]['C'];
+                    $insertdata['durasi'] = $allDataInSheet[$i]['G'];
+                    $insertdata['lokasi'] = $allDataInSheet[$i]['H'];
+                    $insertdata['description'] = $allDataInSheet[$i]['I'];
 
                     $inserdata[COL_BRANCHID] = $rowbranch[0][COL_BRANCHID];
                     $this->mexcel->importdatatraining($inserdata); 
+                    if($i == count($allDataInSheet) - 3 ){
+                        $this->load->view('user/setting');
+                    }
                 }                                       
 
             } catch (Exception $e) {
@@ -104,7 +118,6 @@ class Excel extends CI_Controller {
             echo $error['error'];
             }           
         }
-        $this->load->view('user/setting');
     }
 
     public function uploaddatausertraining(){

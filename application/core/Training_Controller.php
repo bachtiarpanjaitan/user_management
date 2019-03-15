@@ -38,10 +38,12 @@ class Training_Controller extends CI_Controller {
 		$branch = $this->input->post('cabang');
 		$division = $this->input->post('divisi');
 		$type = $this->input->post('type');
+		$tahun = $this->input->post('tahun');
 		$data['type'] = $this->mtraining->getalltrainingtype();
 		$data['division'] = $this->mdivision->getalldivision();
+		$data['year'] = $this->mtraining->getyearoftraining();
 		$data['branch'] = $this->mbranch->getallbranch();
-		$data['training'] = $this->mtraining->gettraininginherit($branch,$division, $type);
+		$data['training'] = $this->mtraining->gettraininginherit($branch,$division, $type,$tahun);
 		$this->load->view('user/traininglist',$data);
 	}
 

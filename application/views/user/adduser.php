@@ -7,6 +7,7 @@
     <form>
         <div class="col-md-6">
             <div class="form-group">
+            initititi
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" required <?= $edit?'disabled="disabled"':'' ?> value="<?= $edit?$user->username:'' ?>">
             </div>

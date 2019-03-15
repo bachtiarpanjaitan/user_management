@@ -84,7 +84,7 @@ class Mtraining extends CI_Model{
 		}
 	}
 
-	function gettraininginherit($br="", $di="", $ty=""){
+	function gettraininginherit($br="", $di="", $ty="",$th=""){
 		if(!empty($br)){
 			$this->db->where(' t.'.COL_BRANCHID, $br);
 		}
@@ -93,6 +93,9 @@ class Mtraining extends CI_Model{
 		}
 		if(!empty($ty)){
 			$this->db->where(' t.'.COL_TRAININGTYPEID, $ty);
+		}
+		if(!empty($th)){
+			$this->db->where('YEAR(t.'.COL_TRAININGDATE.')', $th);
 		}
 		$this->db->select(
 			'*',
@@ -124,6 +127,12 @@ class Mtraining extends CI_Model{
 				return false;
 			}
 		}
+	}
+
+	public function getyearoftraining(){
+		$query = "SELECT DISTINCT YEAR(trainingdate) FROM trainings";
+		$years = $this->db->query($query)->result_array();
+		return $years;
 	}
 
 }

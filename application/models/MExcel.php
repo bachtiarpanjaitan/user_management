@@ -1,6 +1,4 @@
-<?php
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
  
 class MExcel extends CI_Model {
  
@@ -23,8 +21,11 @@ class MExcel extends CI_Model {
     }
 
     public function importdatatraining($data) {
+        // var_dump($data);
+        return;
         if($data){
             $res = $this->db->insert(TBL_TRAININGS,$data);
+            var_dump($this->db->last_query());
             if($res){
                 return TRUE;
             }else{

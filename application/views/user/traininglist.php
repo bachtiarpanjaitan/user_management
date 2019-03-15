@@ -5,7 +5,7 @@
 ?>
 <form action="<?= site_url('training/traininglist') ?>" method="POST">
 	<div class="col col-md-12" style="padding-bottom: 20px">
-		<div class="col col-md-3">
+		<div class="col col-md-2">
 			<label for="cabang">Cabang</label>
 			<select name="cabang" id="cabang" class="form-control">
 				<option value="">Semua</option>
@@ -14,7 +14,7 @@
 				<?php } ?>
 			</select>
 		</div>
-		<div class="col col-md-3">
+		<div class="col col-md-2">
 			<label for="divisi">Divisi</label>
 			<select name="divisi" id="divisi" class="form-control">
 				<option value="">Semua</option>
@@ -23,7 +23,7 @@
 				<?php } ?>
 			</select>
 		</div>
-		<div class="col col-md-3">
+		<div class="col col-md-2">
 			<label for="type">Tipe Training</label>
 			<select name="type" id="type" class="form-control">
 				<option value="">Semua</option>
@@ -32,7 +32,16 @@
 				<?php } ?>
 			</select>
 		</div>
-		<div class="col col-md-3">
+		<div class="col col-md-2">
+			<label for="tahun">Tahun</label>
+			<select name="tahun" id="tahun" class="form-control">
+				<option value="">Semua</option>
+				<?php foreach($year as $data){ ?>
+					<option value="<?= $data['YEAR(trainingdate)'] ?>"><?= $data['YEAR(trainingdate)'] ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<div class="col col-md-2">
 			<label for="">...</label>
 			<button type="submit" class="btn btn-primary btn-block" id="btnsearch">SEARCH</button>
 		</div>
@@ -40,11 +49,13 @@
 </form>
 <div class="container-fluid">
 	<div class="col col-md-12" style="display:inline-block;">
-		<table class="table table-hover" id="datatable">
+		<div class="table-responsive">
+		<table class="table" id="datatable">
 			<thead>
 				<th>No</th>
 				<th>Nama Lengkap</th>
 				<th>Mulai Training</th>
+				<th>Akhir Training</th>
 				<th>Judul</th>
 				<!-- <th>Asal</th> -->
 				<th>Jenis Training</th>
@@ -60,7 +71,13 @@
 				<tr>
 					<td><?= $i ?></td>
 					<td><?= $data[COL_NAME] ?></td>
-					<td><?= $data[COL_ENTRYDATE] ?></td>
+					<td><?= $data[COL_TRAININGDATE] ?></td>
+					<td>
+						<?php 
+							$lenght = $data['lenghtofwork'];
+							echo date($data[COL_TRAININGDATE], strtotime("+".$lenght." days"));
+						?>
+					</td>
 					<td><?= $data[COL_TRAININGTITLE] ?></td>
 					<!-- <td><?= $data[COL_CAMEFROM] ?></td> -->
 					<td><?= $data[COL_TRAININGTYPENAME] ?></td>
@@ -72,6 +89,7 @@
 			<?php $i++; } ?>
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 <?php $this->load->view('user_footer.php') ?>
@@ -91,9 +109,9 @@
                 { "width": "50%", "targets": 3 }
 			],
 			dom: 'Bfrtip',
-			scrollX:        true,
+			'scrollX':        true,
 			deferRender:    true,
-			scroller:       true,
+			// scroller:       true,
 			buttons: [
 				'copy', 'csv', 'excel', 'pdf', 'print'
 			]

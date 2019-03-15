@@ -594,6 +594,8 @@ class Api_Controller extends CI_Controller {
 		$description = $this->input->post('description');
 		$edit = $this->input->post('edit');
 		$id = $this->input->post('id');
+		$durasi = $this->input->post('durasi');
+		$lokasi = $this->input->post('lokasi');
 
 		$config = array(
 			array(
@@ -630,6 +632,11 @@ class Api_Controller extends CI_Controller {
 				'field' => 'branch',
 				'label' => 'branch',
 				'rules' => 'required'
+			),
+			array(
+				'field' => 'durasi',
+				'label' => 'durasi',
+				'rules' => 'required'
 			)
 		);
 
@@ -651,6 +658,8 @@ class Api_Controller extends CI_Controller {
 				COL_TRAININGTITLE => $title,
 				COL_DIVISIONID => $division,
 				COL_BRANCHID => $branch,
+				'durasi' => $durasi,
+				'lokasi' => $lokasi,
 				COL_CREATEDBY => getuserlogin('username'),
 				COL_CREATEDON => date("Y-m-d H:i:s")
 			);
@@ -665,6 +674,8 @@ class Api_Controller extends CI_Controller {
 				COL_TRAININGTITLE => $title,
 				COL_DIVISIONID => $division,
 				COL_BRANCHID => $branch,
+				'durasi' => $durasi,
+				'lokasi' => $lokasi,
 				COL_UPDATEDBY => getuserlogin('username'),
 				COL_UPDATEDON => date("Y-m-d H:i:s")
 			);

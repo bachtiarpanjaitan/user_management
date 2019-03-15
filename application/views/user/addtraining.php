@@ -31,6 +31,11 @@
                 <label for="description">Description</label>
                 <textarea name="description" id="description" cols="30" rows="5" class="form-control"><?= $edit? $training[COL_DESCRIPTION]:'' ?></textarea>
             </div>
+            <div class="form-group">
+                <label for="duration">Duration</label>
+                <input type="number" class="form-control" id="duration" required value="<?= $edit? $training['durasi']:'' ?>">
+            </div>
+            
         </div>
         <div class="col-md-6" class="row">
             <div class="form-group">
@@ -58,9 +63,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="locaion">Location</label>
+                <textarea name="location" id="location" cols="30" rows="5" class="form-control"><?= $edit? $training['lokasi']:'' ?></textarea>
+            </div>
+            <div class="form-group">
                 <label for="trainingdate">Start Date of Training</label>
                 <input type=date class="form-control" id="trainingdate" value="<?= $edit? $training[COL_TRAININGDATE]:'' ?>" >
             </div>
+            
             
         </div>
         <div class="col-md-12">
@@ -105,6 +115,10 @@
                 swal('error', 'Cabang tidak boleh kosong', 'error');
                 return false;
             }
+            if($('#duration').val() == ""){
+                swal('error', 'Durasi Training tidak boleh kosong', 'error');
+                return false;
+            }
 
             $.ajax({
                 type: "POST",
@@ -117,6 +131,8 @@
                     trainer: $('#trainer').val(),
                     division: $('#division').val(),
                     description: $('#description').val(),
+                    durasi: $('#duration').val(),
+                    lokasi: $('#location').val(),
                     id: $('#id').val(),
                     edit: <?= $edit?'1':'0' ?>,
                     branch: $('#branch').val()

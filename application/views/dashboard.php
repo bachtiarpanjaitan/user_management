@@ -4,9 +4,51 @@
 	}
 ?>
     <div >
-
+        <!-- ##### Hero Area Start ##### -->
+       
+       <div class="container container-fluid">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100 tales" src="<?= ASSETS ?>images/1.jpg" alt="First slide">
+                   <div class="carousel-caption d-none d-md-block">
+                        <h5>Title Pertama</h5>
+                        <p>Description Pertama</p>
+                    </div>		
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 tales" src="<?= ASSETS ?>images/2.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Title Kedua</h5>
+                        <p>Description Kedua</p>
+                    </div>	
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 tales" src="<?= ASSETS ?>images/3.jpg" alt="Third slide">
+                     <div class="carousel-caption d-none d-md-block">
+                        <h5>Title Ketiga</h5>
+                        <p>Description Ketiga</p>
+                    </div>	
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+       </div>
+        <!-- ##### Hero Area End ##### -->
         <div class="content mt-3">
-            <div class="col-sm-6 col-lg-4">
+            <!-- <div class="col-sm-6 col-lg-4">
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">
                         <h4 class="mb-0">
@@ -21,9 +63,9 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
             <!--/.col-->
-            <div class="col-sm-6 col-lg-4">
+            <!-- <div class="col-sm-6 col-lg-4">
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">
                         <h4 class="mb-0">
@@ -38,9 +80,9 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
             <!--/.col-->
-            <div class="col-sm-6 col-lg-4">
+            <!-- <div class="col-sm-6 col-lg-4">
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">
                         <h4 class="mb-0">
@@ -55,7 +97,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
             <!--/.col-->
 
             <div class="col-xl-6">
