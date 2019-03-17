@@ -54,8 +54,10 @@
 			<thead>
 				<th>No</th>
 				<th>Nama Lengkap</th>
+				<th>NIPP</th>
 				<th>Mulai Training</th>
 				<th>Akhir Training</th>
+				<th>Durasi</th>
 				<th>Judul</th>
 				<!-- <th>Asal</th> -->
 				<th>Jenis Training</th>
@@ -71,13 +73,16 @@
 				<tr>
 					<td><?= $i ?></td>
 					<td><?= $data[COL_NAME] ?></td>
+					<td><?= $data[COL_NIPP] ?></td>
 					<td><?= $data[COL_TRAININGDATE] ?></td>
 					<td>
 						<?php 
-							$lenght = $data['lenghtofwork'];
-							echo date($data[COL_TRAININGDATE], strtotime("+".$lenght." days"));
+							$lenght = $data['durasi'];
+							// var_dump($cdate);
+							echo date('Y-m-d',strtotime($data[COL_TRAININGDATE]." + ".($lenght - 1)." DAYS"));
 						?>
 					</td>
+					<td><?= $lenght ?></td>
 					<td><?= $data[COL_TRAININGTITLE] ?></td>
 					<!-- <td><?= $data[COL_CAMEFROM] ?></td> -->
 					<td><?= $data[COL_TRAININGTYPENAME] ?></td>

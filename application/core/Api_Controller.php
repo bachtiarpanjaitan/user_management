@@ -351,6 +351,7 @@ class Api_Controller extends CI_Controller {
 		}
 		$name = $this->input->post('name');
 		$email = $this->input->post('email');
+		$nipp = $this->input->post('nipp');
 		$address = $this->input->post('address');
 		$camefrom = $this->input->post('camefrom');
 		$entrydate = $this->input->post('entrydate');
@@ -367,6 +368,11 @@ class Api_Controller extends CI_Controller {
 			array(
 				'field' => 'email',
 				'label' => 'Email',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'nipp',
+				'label' => 'nipp',
 				'rules' => 'required'
 			),
 			array(
@@ -415,6 +421,7 @@ class Api_Controller extends CI_Controller {
 			$data = array(
 				COL_NAME => $name,
 				COL_EMAIL => $email,
+				COL_NIPP => $nipp,
 				COL_ADDRESS => $address,
 				COL_CAMEFROM => $camefrom,
 				COL_ENTRYDATE => $entrydate,
@@ -427,6 +434,7 @@ class Api_Controller extends CI_Controller {
 			$data = array(
 				COL_NAME => $name,
 				COL_EMAIL => $email,
+				COL_NIPP => $nipp,
 				COL_ADDRESS => $address,
 				COL_CAMEFROM => $camefrom,
 				COL_ENTRYDATE => $entrydate,

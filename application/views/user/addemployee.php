@@ -11,6 +11,10 @@
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" required value="<?= $edit?$user->name:''  ?>">
             </div>
+             <div class="form-group">
+                <label for="nipp">nipp</label>
+                <input type="text" class="form-control" id="nipp" required value="<?= $edit?$user->nipp:''  ?>">
+            </div>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" required value="<?= $edit?$user->email:''  ?>">
@@ -19,6 +23,7 @@
                 <label for="address">Address</label>
                 <input type="text" class="form-control" id="address" required value="<?= $edit?$user->address:''  ?>">
             </div>
+            
             <div class="form-group">
                 <button class="btn btn-primary" id="btnsave" type="button">Simpan</button>
             </div>
@@ -38,7 +43,7 @@
                     
                     <input type="text" class="form-control" id="lenghtofwork" required value="<?= $edit?$user->lenghtofwork:''  ?>">
                     <div class="input-group-append">
-                        <span class="input-group-text">Bulan</span>
+                        <span class="input-group-text">Hari</span>
                     </div>
                 </div>
             </div>
@@ -53,8 +58,8 @@
                 swal('error', 'Nama tidak boleh kosong', 'error');
                 return false;
             } 
-            if($('#email').val() == ""){
-                swal('error', 'Email tidak boleh kosong', 'error');
+            if($('#nipp').val() == ""){
+                swal('error', 'NIPP tidak boleh kosong', 'error');
                 return false;
             }
             if($('#address').val() == ""){
@@ -79,6 +84,7 @@
                 data: {
                     name: $('#name').val(),
                     email: $('#email').val(),
+                    nipp: $('#nipp').val(),
                     address: $('#address').val(),
                     camefrom: $('#camefrom').val(),
                     entrydate: $('#entrydate').val(),
