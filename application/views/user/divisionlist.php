@@ -19,7 +19,7 @@
             <td><?= $i ?></td>
             <td><?= $data[COL_DIVISIONNAME] ?></td>
             <td><?= $data[COL_DESCRIPTION] ?></td>
-            <td><a href="<?= site_url('division/divisionedit/').$data[COL_DIVISIONID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_DIVISIONID] ?>"><span class="fa fa-trash"></span></a></td>
+            <td><a href="<?= site_url('division/divisionedit/').$data[COL_DIVISIONID] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $data[COL_DIVISIONID] ?>"><span class="fa fa-trash"></span></a></td>
             </tr>
         <?php $i++; } ?>
         </tbody>
@@ -35,7 +35,7 @@
             ]
         });
 
-        $('.btndelete').click(function (e) { 
+        $('#datatable').on('click', '.btndelete', function() { 
             swal({
                 title: "Anda yakin ingin menghpusnya?",
                 text: "Tindakan ini tidak dapat dibatalkan.",

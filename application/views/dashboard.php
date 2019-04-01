@@ -3,6 +3,17 @@
 		redirect('user/viewlogin');
 	}
 ?>
+    <style>
+        .rotate90 {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+            width: 50%;
+            height:50%;
+        }
+    </style>
     <div >
         <!-- ##### Hero Area Start ##### -->
        
@@ -157,6 +168,25 @@
                                <?php } ?>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#calendar">
+                           Calendar
+                        </a>
+                        </div>
+                        <div id="calendar" class="collapse show" data-parent="#accordion">
+                        <div class=" card-body" >
+                           <div style="background-image: url(<?= ASSETS ?>images/calendar.jpeg) !important" ></div>
+                           <div class="img-thumbnail" >
+                                <img src="<?= ASSETS ?>images/calendar.jpeg" class="" alt="">
+                           </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -61,7 +61,7 @@
 				<th>Judul</th>
 				<!-- <th>Asal</th> -->
 				<th>Jenis Training</th>
-				<th>Instruktur</th>
+				<!-- <th>Instruktur</th> -->
 				<th>Cabang</th>
 				<!-- <th>Divisi</th> -->
 				<th>Action</th>
@@ -86,10 +86,10 @@
 					<td><?= $data[COL_TRAININGTITLE] ?></td>
 					<!-- <td><?= $data[COL_CAMEFROM] ?></td> -->
 					<td><?= $data[COL_TRAININGTYPENAME] ?></td>
-					<td><?= $data[COL_TRAINER] ?></td>
+					<!-- <td><?= $data[COL_TRAINER] ?></td> -->
 					<td><?= $data[COL_BRANCHNAME] ?></td>
 					<!-- <td><?= $data[COL_DIVISIONNAME] ?></td> -->
-					<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
+					<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
 				</tr>
 			<?php $i++; } ?>
 			</tbody>
@@ -122,7 +122,7 @@
 			]
         });
 
-		$('.btndelete').click(function (e) { 
+		$('#datatable').on('click', '.btndelete', function() { 
 			swal({
 				title: "Anda yakin ingin menghapusnya?",
 				text: "Tindakan ini tidak dapat dibatalkan.",

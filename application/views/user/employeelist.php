@@ -29,7 +29,7 @@
             <td><?= $data[COL_CAMEFROM] ?></td>
             <!-- <td><?= $data[COL_ENTRYDATE] ?></td> -->
             <!-- <td><?= $data[COL_LENGHTOFWORK] ?></td> -->
-            <td><a href="<?= site_url('user/employeeedit/').$data[COL_EMPLOYEETRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_EMPLOYEETRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
+            <td><a href="<?= site_url('user/employeeedit/').$data[COL_EMPLOYEETRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $data[COL_EMPLOYEETRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
             </tr>
         <?php $i++; } ?>
         </tbody>
@@ -45,7 +45,7 @@ $(document).ready(function () {
                 { "width": "20%", "targets": 2 }
             ]
     });
-    $('.btndelete').click(function (e) { 
+    $('#datatable').on('click', '.btndelete', function() { 
         swal({
             title: "Anda yakin ingin menghapusnya?",
             text: "Tindakan ini tidak dapat dibatalkan.",

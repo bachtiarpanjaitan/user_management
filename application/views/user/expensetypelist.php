@@ -19,7 +19,7 @@
             <td><?= $i ?></td>
             <td><?= $type[COL_EXPENSETYPENAME] ?></td>
             <td><?= $type[COL_DESCRIPTION] ?></td>
-            <td><a href="<?= site_url('expense/expensetypeedit/').$type[COL_EXPENSETYPEID] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $type[COL_EXPENSETYPEID] ?>"><span class="fa fa-trash"></span></a></td>
+            <td><a href="<?= site_url('expense/expensetypeedit/').$type[COL_EXPENSETYPEID] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $type[COL_EXPENSETYPEID] ?>"><span class="fa fa-trash"></span></a></td>
             </tr>
         <?php $i++; } ?>
         </tbody>
@@ -34,7 +34,7 @@
             ]
         });
 
-        $('.btndelete').click(function (e) { 
+        $('#datatable').on('click', '.btndelete', function() { 
             swal({
                 title: "Anda yakin ingin menghpusnya?",
                 text: "Tindakan ini tidak dapat dibatalkan.",

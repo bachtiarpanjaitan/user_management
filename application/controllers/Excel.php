@@ -51,8 +51,8 @@ class Excel extends CI_Controller {
                 // var_dump($allDataInSheet);
                 $flag = true;
                 $i=3;
-                $this->db->query('delete from trainings');
-                $this->db->query('ALTER TABLE trainings AUTO_INCREMENT = 1');
+                // $this->db->query('delete from trainings');
+                // $this->db->query('ALTER TABLE trainings AUTO_INCREMENT = 1');
                 for ($i;$i < count($allDataInSheet) - 3; $i++) {
                     
                     if($flag){
@@ -65,7 +65,10 @@ class Excel extends CI_Controller {
                         print_r("Nama tidak ditemukan didaftar user training dengan nama: <b>". $name ."</b> <br>");
                         continue;
                     }
-                    $training = $allDataInSheet[$i]['E'];
+                    $training = $allDataInSheet[$i]['F'];
+                    if($training == ""){
+                        $training = 'DEFAULT';
+                    }
                     $rowtraining = $this->mtraining->gettrainingtypewithname(trim($training));
                     if(!$rowtraining){
                         echo "Jenis training tidak ditemukan dengan nama <b>". $training."</b> . <br>";
@@ -73,10 +76,18 @@ class Excel extends CI_Controller {
                     }
 
                     $branch = $allDataInSheet[$i]['D'];
-                    $rowbranch = $this->mbranch->getbranchwithname($branch);
+                    if($branch == ""){
+                        $branch = 'DEFAULT';
+                    }
+                    $rowbranch = $this->mbranch->getbranchwithname(trim($branch));
                     if(!$rowbranch){
                         echo "Cabang tidak ditemukan di daftar dengan nama: <b>". $branch ." </b> <br>";
                         continue;
+                    }
+
+                    $title = trim($allDataInSheet[$i]['E']);
+                    if(empty($title)){
+                        $title = "Judul training tidak diset.";
                     }
                    
                     // $data = array(
@@ -86,29 +97,40 @@ class Excel extends CI_Controller {
                     // );
                     // var_dump($data);
                     // return;
-                    $inserdata[COL_EMPLOYEETRAININGID] = $rowuser[0][COL_EMPLOYEETRAININGID];
-                    $inserdata[COL_DESCRIPTION] = 'Import From Excel File';
-                    $inserdata[COL_CREATEDBY] = 'System';
-                    $inserdata[COL_CREATEDON] = date('Y-m-d');
-                    $inserdata[COL_CREATEDBY] = 'System';
-                    $inserdata[COL_CREATEDON] = date('Y-m-d');
-                    $inserdata[COL_TRAININGDATE] = $allDataInSheet[$i]['F'];
-                    $inserdata[COL_TRAININGDATE] = date('Y-m-d');
-                    $inserdata[COL_TRAININGTYPEID] = $rowtraining[0][COL_TRAININGTYPEID];
-                    $inserdata[COL_TRAINER] = 'Default';
-                    $inserdata[COL_TRAININGTITLE] = $allDataInSheet[$i]['D'];
-                    $inserdata[COL_DIVISIONID] = 3;
-                    $insertdata[COL_NIPP] = $allDataInSheet[$i]['C'];
-                    $insertdata['durasi'] = $allDataInSheet[$i]['G'];
-                    $insertdata['lokasi'] = $allDataInSheet[$i]['H'];
-                    $insertdata['description'] = $allDataInSheet[$i]['I'];
 
-                    $inserdata[COL_BRANCHID] = $rowbranch[0][COL_BRANCHID];
-                    $this->mexcel->importdatatraining($inserdata); 
-                    if($i == count($allDataInSheet) - 3 ){
-                        $this->load->view('user/setting');
+                    
+                    $trainingdate = $allDataInSheet[$i]['G'];
+                    if($trainingdate == '-'){
+                        continue;
                     }
-                }                                       
+                    if($trainingdate){
+                       $date = str_replace(' ','-',$trainingdate);
+                        $date = date('Y-m-d', strtotime($date));
+                    }
+                    $insertdata[COL_EMPLOYEETRAININGID] = $rowuser[0][COL_EMPLOYEETRAININGID];
+                    $insertdata[COL_DESCRIPTION] = 'Import From Excel File';
+                    $insertdata[COL_CREATEDBY] = 'System';
+                    $insertdata[COL_CREATEDON] = date('Y-m-d');
+                    $insertdata[COL_CREATEDBY] = 'System';
+                    // $insertdata[COL_CREATEDON] = date('Y-m-d');
+                    $insertdata[COL_TRAININGDATE] = $date ;
+                    // $insertdata[COL_TRAININGDATE] = date('Y-m-d');
+                    $insertdata[COL_TRAININGTYPEID] = $rowtraining[0][COL_TRAININGTYPEID];
+                    $insertdata[COL_TRAINER] = 'Default';
+                    $insertdata[COL_TRAININGTITLE] = $title ;
+                    $insertdata[COL_DIVISIONID] = 3;
+                    // $insertdata[COL_NIPP] = $allDataInSheet[$i]['C'];
+                    $insertdata['durasi'] = $allDataInSheet[$i]['H'];
+                    $insertdata['lokasi'] = $allDataInSheet[$i]['I'];
+                    $insertdata['description'] = $allDataInSheet[$i]['J'];
+
+                    $insertdata[COL_BRANCHID] = $rowbranch[0][COL_BRANCHID];
+                    $this->mexcel->importdatatraining($insertdata); 
+                    // if($i == count($allDataInSheet) - 3 ){
+                    //     $this->load->view('user/setting');
+                    // }
+                } 
+                $this->load->view('user/setting');                                      
 
             } catch (Exception $e) {
                 die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
@@ -160,13 +182,17 @@ class Excel extends CI_Controller {
                                 continue;
                             }
                             // var_dump($allDataInSheet[$i]);
-
-                            $inserdata['name'] = $allDataInSheet[$i]['B'];
+                            $length = trim($allDataInSheet[$i]['E']);
+                            if($length == ""){
+                                $length = 0;
+                            }
+                            $inserdata['name'] = trim($allDataInSheet[$i]['B']);
+                            $inserdata['nipp'] = trim($allDataInSheet[$i]['C']);
                             $inserdata['email'] = 'NOT SET';
                             $inserdata['address'] = 'Tidak Tersedia';
                             $inserdata['camefrom'] = 'Tidak Tersedia';
                             $inserdata['entrydate'] = date('Y-m-d');
-                            $inserdata['lenghtofwork'] = 0;
+                            $inserdata['lenghtofwork'] = $length;
                             $inserdata['createdon'] = date('Y-m-d');
                             $inserdata['createdby'] = 'System';
                             $inserdata['updatedon'] = date('Y-m-d');

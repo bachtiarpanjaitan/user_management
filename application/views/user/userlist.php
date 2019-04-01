@@ -27,7 +27,7 @@
             <td><?= $data[COL_BRANCHNAME] ?></td>
             <td><?= $data[COL_PHONENUMBER] ?></td>
             <td><?= $data[COL_ISSUSPEND] == 1?"not active":" active" ?></td>
-            <td><a href="<?= site_url('user/useredit/').$data[COL_USERNAME] ?>"><span class="fa fa-edit"></span></a> | <a href="#" class="btndelete" data-id="<?= $data[COL_USERNAME] ?>"><span class="fa fa-trash"></span></a></td>
+            <td><a href="<?= site_url('user/useredit/').$data[COL_USERNAME] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $data[COL_USERNAME] ?>"><span class="fa fa-trash"></span></a></td>
             </tr>
         <?php $i++; } ?>
         </tbody>
@@ -43,7 +43,7 @@ $(document).ready(function () {
             ]
         });
 
-    $('.btndelete').click(function (e) { 
+    $('#datatable').on('click', '.btndelete', function() { 
         swal({
             title: "Anda yakin ingin menghapusnya?",
             text: "Tindakan ini tidak dapat dibatalkan.",
