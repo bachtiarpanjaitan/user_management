@@ -791,4 +791,31 @@ class Api_Controller extends CI_Controller {
 		echo json_encode($resp);
 	}
 
+	public function deletesppt(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
+		$id = $this->input->post('id');
+		if(empty($id)){
+			$resp['success'] = false;
+			$resp['message'] = 'SPPT belum dipilih';
+			echo json_encode($resp);
+			return;
+		}
+
+		$result = $this->msppt->deletesppt($id);
+		if($result){
+			$resp['success'] = true;
+			$resp['message'] = 'Data berhasil Dihapus';
+		}else{
+			$resp['success'] = false;
+			$resp['message'] = 'Data gagal dihapus';
+		}
+		echo json_encode($resp);
+	}
+
 }

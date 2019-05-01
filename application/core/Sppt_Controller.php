@@ -29,5 +29,6 @@ class Sppt_Controller extends CI_Controller {
     public function spptlist(){
 		$data['sppts'] = $this->msppt->getallsppt();
 		$this->load->view('user/spptlist', $data);
-	}
+    }
+    
 }

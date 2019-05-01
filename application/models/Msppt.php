@@ -55,5 +55,16 @@ class Msppt extends CI_Model{
 		// var_dump($this->db->last_query());
 		return $data;
 	}
+
+	function deletesppt($id){
+		if($id){
+			$this->db->where('spptid', $id);
+			if($this->db->delete('sppt')){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
     
 }
