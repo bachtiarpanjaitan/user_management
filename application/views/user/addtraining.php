@@ -15,10 +15,10 @@
                     <?php } ?>
                 </select>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="trainingtitle">Training Title</label>
                 <input type="text" class="form-control" id="trainingtitle" required value="<?= $edit? $training[COL_TRAININGTITLE]:'' ?>">
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="trainingtype">Training Type</label>
                 <select name="trainingtype" id="trainingtype" class="form-control" value="<?= $edit? $training[COL_TRAININGTYPEID]:'' ?>">
@@ -39,10 +39,10 @@
         </div>
         <div class="col-md-6" class="row">
             <div class="form-group">
-                <label for="trainer">Trainer</label>
-                <select name="trainer" id="trainer" class="form-control select2" value="<?= $edit? $training[COL_USERNAME]:'' ?>">
-                    <?php foreach($trainer as $u){ ?>
-                        <option <?= $edit && $training[COL_TRAINER] == $u[COL_USERNAME]? 'selected':'' ?> value="<?= $u[COL_USERNAME] ?>"><?= $u[COL_FULLNAME] ?></option>
+                <label for="trainer">SPPT</label>
+                <select name="spptid" id="spptid" class="form-control select2" value="<?= $edit? $training['spptid']:'' ?>">
+                    <?php foreach($sppt as $u){ ?>
+                        <option <?= $edit && $training['spptid'] == $u['spptid']? 'selected':'' ?> value="<?= $u['spptid'] ?>"><?= $u['judultraining'] ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -103,8 +103,8 @@
                 swal('error', 'Tanggal Mulai Training tidak boleh kosong', 'error');
                 return false;
             }
-            if($('#trainer').val() == ""){
-                swal('error', 'Trainer tidak boleh kosong', 'error');
+            if($('#spptid').val() == ""){
+                swal('error', 'SPPT tidak boleh kosong', 'error');
                 return false;
             }
             if($('#division').val() == ""){
@@ -128,7 +128,7 @@
                     title: $('#trainingtitle').val(),
                     type: $('#trainingtype').val(),
                     date: $('#trainingdate').val(),
-                    trainer: $('#trainer').val(),
+                    spptid: $('#spptid').val(),
                     division: $('#division').val(),
                     description: $('#description').val(),
                     durasi: $('#duration').val(),

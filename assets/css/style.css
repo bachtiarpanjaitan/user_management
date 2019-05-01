@@ -2483,3 +2483,21 @@ header .form-inline {
   display: inline-block !important;
   font-size: 16px !important;
 }
+
+.dropzonearea {
+	background: white;
+	border-radius: 5px;
+	border: 2px dashed rgb(0, 135, 247);
+	border-image: none;
+	max-width: 500px;
+	padding: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.dz-upload {
+	display: block;
+	background-color: red;
+	height: 10px;
+	width: 0%;
+}

@@ -61,7 +61,9 @@
 				<th>Judul</th>
 				<!-- <th>Asal</th> -->
 				<th>Jenis Training</th>
-				<!-- <th>Instruktur</th> -->
+				<!-- <th>Tanggal Tugas</th> -->
+				<th>Vendor</th>
+				<th>SPPT</th>
 				<th>Cabang</th>
 				<!-- <th>Divisi</th> -->
 				<th>Action</th>
@@ -83,10 +85,12 @@
 						?>
 					</td>
 					<td><?= $lenght ?></td>
-					<td><?= $data[COL_TRAININGTITLE] ?></td>
+					<td><?= $data['judultraining'] ?></td>
 					<!-- <td><?= $data[COL_CAMEFROM] ?></td> -->
 					<td><?= $data[COL_TRAININGTYPENAME] ?></td>
-					<!-- <td><?= $data[COL_TRAINER] ?></td> -->
+					<!-- <td><?= $data['tanggaltugas'] ?></td> -->
+					<td><?= $data['vendorname'] ?></td>
+					<td><a href="<?=site_url().'assets/images/'.$data['file'] ?>" target="_blank"><img src="<?=site_url().'assets/images/'.$data['file'] ?>" height="50px" width="50px" alt=""></a></td>
 					<td><?= $data[COL_BRANCHNAME] ?></td>
 					<!-- <td><?= $data[COL_DIVISIONNAME] ?></td> -->
 					<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
@@ -109,10 +113,6 @@
 		$('#datatable').DataTable({
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
 			"bLengthChange" : true,
-            columnDefs: [
-				{ "width": "50%", "targets": 1 },
-                { "width": "50%", "targets": 3 }
-			],
 			dom: 'Bfrtip',
 			'scrollX':        true,
 			deferRender:    true,

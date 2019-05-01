@@ -12,6 +12,7 @@ class Training_Controller extends CI_Controller {
 			$this->load->model('mbranch');
 			$this->load->model('mdivision');
 			$this->load->model('memployee');
+			$this->load->model('msppt');
 			$this->load->library('session');
 			$this->load->library('form_validation');
 	    }
@@ -51,6 +52,7 @@ class Training_Controller extends CI_Controller {
 		$data['user'] = $this->memployee->getemployee();
 		$data['trainer'] = $this->muser->getuserdata('',true, ROLE_USER);
 		$data['type'] = $this->mtraining->getalltrainingtype();
+		$data['sppt'] = $this->msppt->getsppt();
 		$data['division'] = $this->mdivision->getalldivision();
 		$data['branch'] = $this->mbranch->getallbranch();
 		$data['edit'] = false;

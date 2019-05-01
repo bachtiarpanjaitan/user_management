@@ -102,12 +102,19 @@ class Mtraining extends CI_Model{
 			TBL_EMPLOYEETRAININGS.'.*',
 			TBL_TRAININGTYPES.'.'.COL_TRAININGTYPENAME,
 			TBL_DIVISIONS.'.'.COL_DIVISIONNAME,
-			TBL_BRANCHES.'.'.COL_BRANCHNAME
+			TBL_BRANCHES.'.'.COL_BRANCHNAME,
+			'vendors.vendorname',
+			'sppt.file',
+			'sppt.judultraining',
+			'tanggaltugas',
+			'a=sppt.lokasi'
 		);
 		$this->db->join(TBL_EMPLOYEETRAININGS.' et','et.'. COL_EMPLOYEETRAININGID.' = '. 't.'.COL_EMPLOYEETRAININGID, 'left');
 		$this->db->join(TBL_TRAININGTYPES.' tt','tt.'.COL_TRAININGTYPEID.' = '.'t.'.COL_TRAININGTYPEID,'left');
 		$this->db->join(TBL_DIVISIONS.' d','d.'.COL_DIVISIONID.' = '.'t.'.COL_DIVISIONID,'left');
 		$this->db->join(TBL_BRANCHES.' b','b.'.COL_BRANCHID.' = '.'t.'.COL_BRANCHID,'left');
+		$this->db->join('sppt'.' sp','sp.spptid = '.'t.spptid','left');
+		$this->db->join('vendors'.' v','v.vendorid = '.'sp.vendorid','left');
 		$data = $this->db->get(TBL_TRAININGS.' t')->result_array();
 		return $data;
 	}

@@ -11,7 +11,15 @@
 <script src="<?= ASSETS ?>vendors/jqvmap/dist/jquery.vmap.min.js"></script>
 <script src="<?= ASSETS ?>vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 <script src="<?= ASSETS ?>vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="<?= ASSETS ?>vendors/dropzone/min/dropzone.min.js"></script>
+<script src="<?= ASSETS ?>vendors/moment/moment.min.js"></script>
+<script src="<?= ASSETS ?>vendors/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 <script type="text/javascript">
+
+	$('.datetimepicker').bootstrapMaterialDatePicker({
+		format: 'YYYY-MM-DD'
+	});
+
 	function isNumberKey(evt)
 		{
 			var charCode = (evt.which) ? evt.which : evt.keyCode;

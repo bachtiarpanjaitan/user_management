@@ -12,6 +12,7 @@ class Api_Controller extends CI_Controller {
 			$this->load->model('mtraining');
 			$this->load->model('mexpense');
 			$this->load->model('mdivision');
+			$this->load->model('msppt');
 			$this->load->library('session');
 			$this->load->library('form_validation');
 			$this->load->helper(array('form', 'url'));
@@ -596,7 +597,7 @@ class Api_Controller extends CI_Controller {
 		$title = $this->input->post('title');
 		$type = $this->input->post('type');
 		$date = $this->input->post('date');
-		$trainer = $this->input->post('trainer');
+		$spptid = $this->input->post('spptid');
 		$division = $this->input->post('division');
 		$branch = $this->input->post('branch');
 		$description = $this->input->post('description');
@@ -627,8 +628,8 @@ class Api_Controller extends CI_Controller {
 				'rules' => 'required'
 			),
 			array(
-				'field' => 'trainer',
-				'label' => 'trainer',
+				'field' => 'spptid',
+				'label' => 'spptid',
 				'rules' => 'required'
 			),
 			array(
@@ -662,7 +663,8 @@ class Api_Controller extends CI_Controller {
 				COL_DESCRIPTION => $description,
 				COL_TRAININGDATE => $date,
 				COL_TRAININGTYPEID => $type,
-				COL_TRAINER => $trainer,
+				// COL_TRAINER => $trainer,
+				'spptid' => $spptid,
 				COL_TRAININGTITLE => $title,
 				COL_DIVISIONID => $division,
 				COL_BRANCHID => $branch,
@@ -725,6 +727,67 @@ class Api_Controller extends CI_Controller {
 			$resp['success'] = false;
 			$resp['message'] = 'Data gagal dihapus';
 		}
+		echo json_encode($resp);
+	}
+
+	function uploadimage(){
+		$filename = $this->input->post('base64');
+		if(!empty($filename)){
+			$image_parts = explode(";base64,", $filename);
+			$image_type_aux = explode("image/", $image_parts[0]); 
+			$image_type = $image_type_aux[1];  
+			$image_base64 = base64_decode($image_parts[1]);
+			$name = uniqid() . '.'.$image_type;
+			$file = realpath('assets/images').'/'.$name ;
+			file_put_contents($file, $image_base64);
+			$data = array(
+				'filename' => $name,
+				'realpath' => $file,
+				'success' => true
+			);
+			
+		}else{
+			$data = array('success' => false);
+		}
+		echo json_encode($data);
+	}
+
+	public function savesppt(){
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
+		$file = $this->input->post('file');
+		$tanggaltugas = $this->input->post('tanggaltugas');
+		$vendorid = $this->input->post('vendorid');
+		$judul = $this->input->post('judul');
+		$lokasi = $this->input->post('lokasi');
+		$edit = $this->input->post('edit');
+		$id = $this->input->post('id');
+		$data = array(
+			'file' => $file,
+			'tanggaltugas' => $tanggaltugas,
+			'vendorid' => $vendorid,
+			'judultraining' => $judul,
+			'lokasi' => $lokasi
+		);
+
+		if($edit){
+			$result = $this->msppt->updatesppt($data, $id);
+		}else{
+			$result = $this->msppt->addsppt($data);
+		}
+		if($result){
+			$resp['success'] = true;
+			$resp['message'] = 'Data Sppt berhasil disimpan';
+		}else{
+			$resp['success'] = false;
+			$resp['message'] = 'Data Sppt Gagal disimpan';
+		}
+
 		echo json_encode($resp);
 	}
 

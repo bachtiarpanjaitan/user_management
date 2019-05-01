@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="<?= ASSETS ?>vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="<?= ASSETS ?>vendors/jqvmap/dist/jqvmap.min.css">
     <link rel="stylesheet" href="<?= ASSETS ?>vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= ASSETS ?>vendors/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css">
 
     <link rel="stylesheet" href="<?= ASSETS ?>css/style.css">
     <link rel="stylesheet" href="<?= ASSETS ?>css/sweetalert.css">
@@ -113,6 +114,13 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('division/adddivision') ?>">New Division</a></li>
                             <li><i class="menu-icon ti-list"></i><a href="<?= site_url('division/divisionlist') ?>">Division List</a></li>
+                        </ul>
+                    </li>
+                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-minus-circle"></i>SPPT</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('sppt/addsppt') ?>">New SPPT</a></li>
+                            <li><i class="menu-icon ti-list"></i><a href="<?= site_url('sppt/spptlist') ?>">SPPT List</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
