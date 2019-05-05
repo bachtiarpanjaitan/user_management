@@ -31,6 +31,18 @@ class MExcel extends CI_Model {
             }
         }
     }
+
+    public function importdatavendor($data) {
+        if($data){
+            $res = $this->db->insert('vendors',$data);
+            // var_dump($this->db->last_query());
+            if($res){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }
+    }
  
 }
  

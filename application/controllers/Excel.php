@@ -210,4 +210,49 @@ class Excel extends CI_Controller {
             }
         $this->load->view('user/setting');
     }
+
+    public function uploaddatavendor()
+    {
+        require_once APPPATH ."/third_party/PHPExcel.php";
+        $path = './uploads/';
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['remove_spaces'] = TRUE;
+        // var_dump( $config['upload_path']);
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if ($this->input->post('submit')) {
+            if (!$this->upload->do_upload('uploadFile')) {
+                $error = array('error' => $this->upload->display_errors());
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+            }
+            if(empty($error)){
+            if (!empty($data['upload_data']['file_name'])) {
+                $import_xls_file = $data['upload_data']['file_name'];
+            } else {
+                $import_xls_file = 0;
+            }
+            $inputFileName = $path . $import_xls_file;
+
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+                
+                $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+                $i=3;
+                 for ($i;$i < count($allDataInSheet) - 3; $i++) {
+                     $inserdata['vendorname'] = trim($allDataInSheet[$i]['B']);
+                     $result = $this->mexcel->importdatavendor($inserdata); 
+                 }
+
+            }catch (Exception $e) {
+                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+                        . '": ' .$e->getMessage());
+            }
+                    
+        }
+    }
+}
 }

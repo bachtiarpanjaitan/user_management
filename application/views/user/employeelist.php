@@ -9,9 +9,9 @@
             <th>No</th>
             <th>Name</th>
             <th>NIPP</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Came From</th>
+            <!-- <th>Email</th> -->
+            <!-- <th>Address</th> -->
+            <!-- <th>Came From</th> -->
             <!-- <th>Entry Date</th> -->
             <!-- <th>Lenght Of Work</th> -->
             <th>Action</th>
@@ -24,9 +24,9 @@
             <td><?= $i ?></td>
             <td><?= $data[COL_NAME] ?></td>
             <td><?= $data[COL_NIPP] ?></td>
-            <td><?= $data[COL_EMAIL] ?></td>
-            <td><?= $data[COL_ADDRESS] ?></td>
-            <td><?= $data[COL_CAMEFROM] ?></td>
+            <!-- <td><?= $data[COL_EMAIL] ?></td> -->
+            <!-- <td><?= $data[COL_ADDRESS] ?></td> -->
+            <!-- <td><?= $data[COL_CAMEFROM] ?></td> -->
             <!-- <td><?= $data[COL_ENTRYDATE] ?></td> -->
             <!-- <td><?= $data[COL_LENGHTOFWORK] ?></td> -->
             <td><a href="<?= site_url('user/employeeedit/').$data[COL_EMPLOYEETRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $data[COL_EMPLOYEETRAININGID] ?>"><span class="fa fa-trash"></span></a></td>

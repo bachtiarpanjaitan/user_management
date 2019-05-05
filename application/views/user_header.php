@@ -82,6 +82,13 @@
                     <h3 class="menu-title">Master</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Vendor</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('vendor/addvendor') ?>">New Vendor</a></li>
+                            <li><i class="menu-icon ti-list"></i><a href="<?= site_url('vendor/vendorlist') ?>">Vendor List</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-group"></i>Branches</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('branch/addbranch') ?>">New Branches</a></li>
@@ -109,13 +116,13 @@
                             <li><i class="menu-icon ti-list"></i><a href="<?= site_url('user/employeelist') ?>">User Training List</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-has-children dropdown">
+                    <!-- <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-minus-circle"></i>Divisions</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-edit"></i><a href="<?= site_url('division/adddivision') ?>">New Division</a></li>
                             <li><i class="menu-icon ti-list"></i><a href="<?= site_url('division/divisionlist') ?>">Division List</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                      <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-minus-circle"></i>SPPT</a>
                         <ul class="sub-menu children dropdown-menu">

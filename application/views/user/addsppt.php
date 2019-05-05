@@ -30,9 +30,9 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="">Foto Terpilih</label>
+						<label for="">File Terpilih</label>
 						<div id="imgthumbnail"><img
-								src="<?= ASSETS ?>images/<?= $edit?$sppt['file']: 'default.jpg' ?>" width="150px"
+								src="<?= ASSETS ?>images/<?= $edit?'default.jpg': '' ?>" width="150px"
 								height="125px" class="img img-responsive img-thumbnail" alt=""></div>
 					</div>
 				</div>
@@ -79,10 +79,11 @@
         maxFiles: 1,
         uploadMultiple: false,
         autoProcessQueue: true,
-        dictDefaultMessage: "Upload Gambar",
+        dictDefaultMessage: "Upload File",
         previewTemplate: document.querySelector('#template').innerHTML,
         addRemoveLinks: true,
-        acceptedFiles: 'image/*',
+        // acceptedFiles: 'image/*',
+        acceptedFiles: '.pdf',
         maxFilesize: 2,
         accept: function (file, done) {
             reader = new FileReader();
@@ -108,8 +109,7 @@
                         if (val.success == true) {
                             $('#imgthumbnail').empty();
                             $('#images').val(val.filename);
-                            var content = '<img src="<?= ASSETS ?>images/' + val.filename +
-                                '" class="img-responsive img-thumbnail">';
+                            var content = '<img src="<?= ASSETS ?>images/default.jpg" class="img-responsive img-thumbnail">';
                             $('#imgthumbnail').append(content);
                         }
                     }

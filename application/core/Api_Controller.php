@@ -12,6 +12,7 @@ class Api_Controller extends CI_Controller {
 			$this->load->model('mtraining');
 			$this->load->model('mexpense');
 			$this->load->model('mdivision');
+			$this->load->model('mvendor');
 			$this->load->model('msppt');
 			$this->load->library('session');
 			$this->load->library('form_validation');
@@ -734,7 +735,8 @@ class Api_Controller extends CI_Controller {
 		$filename = $this->input->post('base64');
 		if(!empty($filename)){
 			$image_parts = explode(";base64,", $filename);
-			$image_type_aux = explode("image/", $image_parts[0]); 
+			$image_type_aux = explode("/", $image_parts[0]); 
+			// var_dump($image_type_aux[1]);
 			$image_type = $image_type_aux[1];  
 			$image_base64 = base64_decode($image_parts[1]);
 			$name = uniqid() . '.'.$image_type;
@@ -808,6 +810,79 @@ class Api_Controller extends CI_Controller {
 		}
 
 		$result = $this->msppt->deletesppt($id);
+		if($result){
+			$resp['success'] = true;
+			$resp['message'] = 'Data berhasil Dihapus';
+		}else{
+			$resp['success'] = false;
+			$resp['message'] = 'Data gagal dihapus';
+		}
+		echo json_encode($resp);
+	}
+
+	public function savevendor()
+	{
+		if(!islogin()){
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
+		$vendor = $this->input->post('vendorname');
+		$edit = $this->input->post('edit');
+		$id = $this->input->post('vendorid');
+
+		if(!$edit){
+			if($this->mvendor->existvendorname($vendor)){
+				$resp['success'] = false;
+				$resp['message'] = 'Nama vendor sudah pernah digunakan.';
+				echo json_encode($resp);
+				return;
+			}
+		}
+
+		if(empty($vendor)){
+			$resp['success'] = false;
+			$resp['message'] = 'Nama vendor tidak dimasukkan.';
+			echo json_encode($resp);
+			return;
+		}
+
+		$data = array(
+			'vendorname' => $vendor,
+		);
+
+		if($edit){
+			$result = $this->mvendor->updatevendor($data, $id);
+		}else{
+			$result = $this->mvendor->addvendor($data);
+		}
+		if($result){
+			$resp['success'] = true;
+			$resp['message'] = 'Data Cabang Berhasil Disimpan';
+		}
+
+		echo json_encode($resp);
+	}
+
+	public function deletevendor(){
+		if(!islogin()){ 
+			$resp['success'] = false;
+			$resp['message'] = "TIdak dapat diotentiasi, login Terlebih Dahulu";
+			echo json_encode($resp);
+			return;
+			
+		}
+		$id = $this->input->post('id');
+		if(empty($id)){
+			$resp['success'] = false;
+			$resp['message'] = 'Data Vendor belum dipilih';
+			echo json_encode($resp);
+			return;
+		}
+
+		$result = $this->mvendor->deletevendor($id);
 		if($result){
 			$resp['success'] = true;
 			$resp['message'] = 'Data berhasil Dihapus';

@@ -90,7 +90,7 @@
 					<td><?= $data[COL_TRAININGTYPENAME] ?></td>
 					<!-- <td><?= $data['tanggaltugas'] ?></td> -->
 					<td><?= $data['vendorname'] ?></td>
-					<td><a href="<?=site_url().'assets/images/'.$data['file'] ?>" target="_blank"><img src="<?=site_url().'assets/images/'.$data['file'] ?>" height="50px" width="50px" alt=""></a></td>
+					<td><a href="<?=site_url().'assets/images/'.$data['file'] ?>" target="_blank"><?= $data['file'] ?></a></td>
 					<td><?= $data[COL_BRANCHNAME] ?></td>
 					<!-- <td><?= $data[COL_DIVISIONNAME] ?></td> -->
 					<td><a href="<?= site_url('training/trainingedit/').$data[COL_TRAININGID] ?>"><span class="fa fa-edit"></span></a> | <a href="javascript:void(0);" class="btndelete" data-id="<?= $data[COL_TRAININGID] ?>"><span class="fa fa-trash"></span></a></td>
